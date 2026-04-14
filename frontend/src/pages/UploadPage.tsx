@@ -215,19 +215,19 @@ export function UploadPage() {
         }}
       />
 
-      <div className="w-full max-w-lg space-y-8 relative z-10">
+      <div className="w-full max-w-2xl space-y-8 relative z-10">
         {/* Title */}
         <div className="text-center space-y-3 fade-in">
           <h1
-            className="gradient-text tracking-widest uppercase"
+            className="gradient-text uppercase"
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 800,
-              fontSize: "clamp(3rem, 8vw, 5rem)",
-              letterSpacing: "0.2em",
+              fontSize: "clamp(2rem, 5vw, 3.2rem)",
+              letterSpacing: "0.12em",
             }}
           >
-            Neuro Lens
+            NeuroLens
           </h1>
           <p
             className="fade-in fade-in-delay-1"
