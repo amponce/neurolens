@@ -1,8 +1,10 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { METRIC_COLORS } from "../types";
 import type { AnalysisResult } from "../types";
 import { GlassBrain } from "../components/GlassBrain";
+import { Timeline } from "../components/Timeline";
+import { MetricsPanel } from "../components/MetricsPanel";
+import { useTimeline } from "../hooks/useTimeline";
 
 function loadResult(id: string): AnalysisResult | null {
   try {
@@ -14,33 +16,8 @@ function loadResult(id: string): AnalysisResult | null {
   }
 }
 
-interface ScoreBarProps {
-  label: string;
-  value: number;
-  color: string;
-}
-
-function ScoreBar({ label, value, color }: ScoreBarProps) {
-  const pct = Math.round(value * 100);
-  return (
-    <div className="space-y-1">
-      <div className="flex justify-between items-center">
-        <span className="text-gray-300 text-sm font-medium">{label}</span>
-        <span className="text-gray-400 text-xs">{pct}%</span>
-      </div>
-      <div className="w-full bg-gray-800 rounded-full h-2">
-        <div
-          className="h-2 rounded-full transition-all duration-700"
-          style={{ width: `${pct}%`, backgroundColor: color }}
-        />
-      </div>
-    </div>
-  );
-}
-
 export function VisualizePage() {
   const { id } = useParams<{ id: string }>();
-  const [frameIndex] = useState(0);
 
   if (!id) {
     return (
@@ -60,17 +37,28 @@ export function VisualizePage() {
     );
   }
 
+  return <VisualizeLayout result={result} />;
+}
+
+interface VisualizeLayoutProps {
+  result: AnalysisResult;
+}
+
+function VisualizeLayout({ result }: VisualizeLayoutProps) {
+  const { frameIndex, playing, toggle, seek } = useTimeline({
+    frameCount: result.frames.length,
+    fps: 1,
+  });
+
   const activations = useMemo(
     () =>
       result.vertex_activations.length > 0
         ? (result.vertex_activations[frameIndex] ?? null)
         : null,
-    [result.vertex_activations, frameIndex]
+    [result.vertex_activations, frameIndex],
   );
 
   const currentFrame = result.frames[frameIndex] ?? null;
-
-  const summaryEntries = Object.entries(result.summary);
 
   return (
     <div
@@ -84,39 +72,27 @@ export function VisualizePage() {
       }}
     >
       {/* Top-left: Brain viewer */}
-      <div className="bg-gray-900 border-b border-r border-gray-800">
+      <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
         <GlassBrain activations={activations} frame={currentFrame} />
       </div>
 
       {/* Right sidebar — spans both rows */}
       <div
-        className="bg-gray-900 border-l border-gray-800 p-4 overflow-y-auto"
+        className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800"
         style={{ gridRow: "1 / 3" }}
       >
-        <h2 className="text-gray-200 font-semibold text-sm uppercase tracking-widest mb-4">
-          Engagement Scores
-        </h2>
-        <div className="space-y-4">
-          {summaryEntries.length > 0 ? (
-            summaryEntries.map(([metric, value]) => (
-              <ScoreBar
-                key={metric}
-                label={metric.replace(/_/g, " ")}
-                value={value}
-                color={METRIC_COLORS[metric] ?? "#6b7280"}
-              />
-            ))
-          ) : (
-            <p className="text-gray-500 text-sm">No summary data available.</p>
-          )}
-        </div>
+        <MetricsPanel result={result} frameIndex={frameIndex} />
       </div>
 
-      {/* Bottom: Timeline placeholder */}
-      <div className="bg-gray-900 border-t border-gray-800 flex items-center justify-center">
-        <p className="text-gray-500 text-sm font-medium">
-          Timeline (coming next)
-        </p>
+      {/* Bottom-left: Timeline */}
+      <div className="bg-gray-900 rounded-xl border border-gray-800">
+        <Timeline
+          frames={result.frames}
+          frameIndex={frameIndex}
+          playing={playing}
+          onSeek={seek}
+          onToggle={toggle}
+        />
       </div>
     </div>
   );
