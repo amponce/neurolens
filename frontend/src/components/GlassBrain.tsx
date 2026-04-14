@@ -4,6 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useBrainMesh } from "../hooks/useBrainMesh";
 import { RegionTooltip } from "./RegionTooltip";
+import { NeuralPathways } from "./NeuralPathways";
 import type { FrameScores, BrainMesh, BrainRegions } from "../types";
 
 interface GlassBrainProps {
@@ -154,7 +155,7 @@ function BrainSurface({ mesh, regions, activations, onHover }: BrainSurfaceProps
   );
 }
 
-export function GlassBrain({ activations, frame: _frame }: GlassBrainProps) {
+export function GlassBrain({ activations, frame }: GlassBrainProps) {
   const { mesh, regions, loading } = useBrainMesh();
   const [hoveredRegion, setHoveredRegion] = useState<HoveredRegion | null>(null);
 
@@ -185,6 +186,7 @@ export function GlassBrain({ activations, frame: _frame }: GlassBrainProps) {
             onHover={setHoveredRegion}
           />
         )}
+        {regions && <NeuralPathways regions={regions} frame={frame ?? null} />}
       </Canvas>
 
       {hoveredRegion && (
