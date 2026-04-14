@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { METRIC_COLORS } from "../types";
 import type { AnalysisResult } from "../types";
+import { GlassBrain } from "../components/GlassBrain";
 
 function loadResult(id: string): AnalysisResult | null {
   try {
@@ -59,7 +60,15 @@ export function VisualizePage() {
     );
   }
 
-  void frameIndex; // reserved for timeline integration
+  const activations = useMemo(
+    () =>
+      result.vertex_activations.length > 0
+        ? (result.vertex_activations[frameIndex] ?? null)
+        : null,
+    [result.vertex_activations, frameIndex]
+  );
+
+  const currentFrame = result.frames[frameIndex] ?? null;
 
   const summaryEntries = Object.entries(result.summary);
 
@@ -74,11 +83,9 @@ export function VisualizePage() {
         width: "100vw",
       }}
     >
-      {/* Top-left: Brain viewer placeholder */}
-      <div className="bg-gray-900 flex items-center justify-center border-b border-r border-gray-800">
-        <p className="text-gray-500 text-lg font-medium">
-          Glass Brain (coming next)
-        </p>
+      {/* Top-left: Brain viewer */}
+      <div className="bg-gray-900 border-b border-r border-gray-800">
+        <GlassBrain activations={activations} frame={currentFrame} />
       </div>
 
       {/* Right sidebar — spans both rows */}
