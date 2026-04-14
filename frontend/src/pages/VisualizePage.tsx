@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { AnalysisResult } from "../types";
 import { GlassBrain } from "../components/GlassBrain";
 import { Timeline } from "../components/Timeline";
@@ -16,25 +16,28 @@ function loadResult(id: string): AnalysisResult | null {
   }
 }
 
+function EmptyState({ message }: { message: string }) {
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{ background: "var(--color-void)", color: "var(--color-text-muted)", fontFamily: "var(--font-body)" }}
+    >
+      {message}
+    </div>
+  );
+}
+
 export function VisualizePage() {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
-    return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center text-gray-400">
-        No analysis ID provided.
-      </div>
-    );
+    return <EmptyState message="No analysis ID provided." />;
   }
 
   const result = loadResult(id);
 
   if (!result) {
-    return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center text-gray-400">
-        Analysis not found in session. Please upload a file first.
-      </div>
-    );
+    return <EmptyState message="Analysis not found in session. Please upload a file first." />;
   }
 
   return <VisualizeLayout result={result} />;
@@ -60,32 +63,111 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
   const currentFrame = result.frames[frameIndex] ?? null;
 
+  const filename = currentFrame
+    ? `${result.input_type.toUpperCase()} · ${result.duration}s`
+    : result.input_type.toUpperCase();
+
   return (
     <div
-      className="bg-gray-950 text-white"
+      className="fade-in"
       style={{
+        background: "var(--color-void)",
         display: "grid",
         gridTemplateColumns: "1fr 300px",
-        gridTemplateRows: "1fr 80px",
+        gridTemplateRows: "48px 1fr 80px",
         height: "100vh",
         width: "100vw",
+        gap: 8,
+        padding: 8,
       }}
     >
-      {/* Top-left: Brain viewer */}
-      <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+      {/* Header bar — spans full width */}
+      <div
+        className="glow-card fade-in"
+        style={{
+          gridColumn: "1 / 3",
+          gridRow: "1",
+          borderRadius: 12,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingLeft: "1.25rem",
+          paddingRight: "1.25rem",
+        }}
+      >
+        {/* Logo */}
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: "0.875rem",
+            letterSpacing: "0.18em",
+            color: "var(--color-cyan)",
+            textTransform: "uppercase",
+          }}
+        >
+          NeuroLens
+        </span>
+
+        {/* Filename */}
+        <span
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.8125rem",
+            color: "var(--color-text-muted)",
+          }}
+        >
+          {filename}
+        </span>
+
+        {/* New Analysis link */}
+        <Link
+          to="/"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.8125rem",
+            color: "var(--color-text-muted)",
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.375rem",
+            transition: "color 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-cyan)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)";
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          New Analysis
+        </Link>
+      </div>
+
+      {/* Brain viewer */}
+      <div
+        className="glow-card fade-in fade-in-delay-1"
+        style={{ gridColumn: "1", gridRow: "2", overflow: "hidden", borderRadius: 16 }}
+      >
         <GlassBrain activations={activations} frame={currentFrame} />
       </div>
 
-      {/* Right sidebar — spans both rows */}
+      {/* Right sidebar — spans rows 2 and 3 */}
       <div
-        className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800"
-        style={{ gridRow: "1 / 3" }}
+        className="glow-card fade-in fade-in-delay-2"
+        style={{ gridColumn: "2", gridRow: "2 / 4", overflow: "hidden", borderRadius: 16 }}
       >
         <MetricsPanel result={result} frameIndex={frameIndex} />
       </div>
 
-      {/* Bottom-left: Timeline */}
-      <div className="bg-gray-900 rounded-xl border border-gray-800">
+      {/* Timeline */}
+      <div
+        className="glow-card fade-in fade-in-delay-3"
+        style={{ gridColumn: "1", gridRow: "3", borderRadius: 16 }}
+      >
         <Timeline
           frames={result.frames}
           frameIndex={frameIndex}

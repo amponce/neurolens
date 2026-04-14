@@ -1,4 +1,5 @@
 import type { AnalysisResult } from "../types";
+import { METRIC_COLORS } from "../types";
 import { ScoreBar } from "./ScoreBar";
 
 interface MetricsPanelProps {
@@ -30,14 +31,27 @@ export function MetricsPanel({ result, frameIndex }: MetricsPanelProps) {
   const topRegions = currentFrame?.top_regions.slice(0, 8) ?? [];
 
   return (
-    <div className="p-4 overflow-y-auto h-full space-y-5">
+    <div
+      className="overflow-y-auto h-full"
+      style={{ padding: "1.25rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}
+    >
       {/* Header */}
-      <h2 className="text-gray-400 text-sm uppercase tracking-wider">
+      <h2
+        style={{
+          fontFamily: "var(--font-display)",
+          fontWeight: 600,
+          fontSize: "0.6875rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: "var(--color-text-muted)",
+          margin: 0,
+        }}
+      >
         Neural Engagement
       </h2>
 
       {/* Score bars */}
-      <div className="space-y-4">
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         {METRIC_ORDER.map((metric) => {
           const history = result.frames.map(
             (f) => f.scores[metric] ?? 0,
@@ -59,19 +73,65 @@ export function MetricsPanel({ result, frameIndex }: MetricsPanelProps) {
 
       {/* Top active regions */}
       {topRegions.length > 0 && (
-        <div className="space-y-2">
-          <h3 className="text-gray-400 text-xs uppercase tracking-wider">
-            Top Active Regions
-          </h3>
-          <ul className="space-y-1">
-            {topRegions.map((region) => (
-              <li key={region} className="flex items-center gap-2 text-xs text-gray-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
-                {region}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <>
+          {/* Divider */}
+          <div style={{ borderTop: "1px solid var(--color-border)" }} />
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 600,
+                fontSize: "0.6875rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: "var(--color-text-muted)",
+                margin: 0,
+              }}
+            >
+              Top Active Regions
+            </h3>
+
+            {/* Region pills */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+              {topRegions.map((region, i) => {
+                const metricKey = METRIC_ORDER[i % METRIC_ORDER.length];
+                const dotColor = METRIC_COLORS[metricKey] ?? "#00e5ff";
+
+                return (
+                  <span
+                    key={region}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.3125rem",
+                      padding: "0.1875rem 0.5625rem",
+                      borderRadius: 999,
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid var(--color-border)",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "0.6875rem",
+                      color: "var(--color-text)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: dotColor,
+                        flexShrink: 0,
+                        boxShadow: `0 0 4px ${dotColor}`,
+                      }}
+                    />
+                    {region}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

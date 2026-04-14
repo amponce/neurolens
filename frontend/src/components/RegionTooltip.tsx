@@ -1,3 +1,21 @@
+const CATEGORY_COLORS: Record<string, string> = {
+  visual: "#ffab40",
+  auditory: "#00e5ff",
+  motor: "#7c4dff",
+  language: "#10b981",
+  limbic: "#ef4444",
+  prefrontal: "#3b82f6",
+  default: "#64748b",
+};
+
+function getCategoryColor(category: string): string {
+  const key = category.toLowerCase();
+  for (const [prefix, color] of Object.entries(CATEGORY_COLORS)) {
+    if (key.includes(prefix)) return color;
+  }
+  return CATEGORY_COLORS.default;
+}
+
 interface RegionTooltipProps {
   name: string;
   category: string;
@@ -5,11 +23,63 @@ interface RegionTooltipProps {
 }
 
 export function RegionTooltip({ name, category, value }: RegionTooltipProps) {
+  const dotColor = getCategoryColor(category);
+
   return (
-    <div className="absolute top-4 left-4 bg-gray-900/90 border border-gray-700 rounded-lg px-4 py-3 pointer-events-none backdrop-blur-sm">
-      <p className="text-white font-semibold">{name}</p>
-      <p className="text-gray-400 text-sm">{category}</p>
-      <p className="text-cyan-400 text-sm mt-1">
+    <div
+      className="glow-card absolute top-4 left-4 pointer-events-none"
+      style={{
+        padding: "0.75rem 1rem",
+        backdropFilter: "blur(8px)",
+        borderRadius: 12,
+        minWidth: 160,
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "0.4375rem", marginBottom: "0.1875rem" }}>
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            background: dotColor,
+            boxShadow: `0 0 6px ${dotColor}`,
+            flexShrink: 0,
+          }}
+        />
+        <p
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            fontSize: "0.875rem",
+            color: "var(--color-text)",
+            margin: 0,
+          }}
+        >
+          {name}
+        </p>
+      </div>
+
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.75rem",
+          color: "var(--color-text-muted)",
+          margin: 0,
+          paddingLeft: "1.1875rem",
+        }}
+      >
+        {category}
+      </p>
+
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.75rem",
+          color: "var(--color-cyan)",
+          margin: "0.25rem 0 0",
+          paddingLeft: "1.1875rem",
+        }}
+      >
         Activation: {(value * 100).toFixed(0)}%
       </p>
     </div>

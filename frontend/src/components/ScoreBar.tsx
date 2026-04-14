@@ -27,20 +27,43 @@ export function ScoreBar({
   const dotY = 20 - (history[currentIndex] ?? 0) / max * 18;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       {/* Label and value */}
       <div className="flex justify-between items-center">
-        <span className="text-gray-300 text-xs font-medium">{label}</span>
-        <span className="text-xs font-mono" style={{ color }}>
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "0.6875rem",
+            fontWeight: 600,
+            color: "var(--color-text-muted)",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+          }}
+        >
+          {label}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.75rem",
+            fontVariantNumeric: "tabular-nums",
+            color,
+          }}
+        >
           {pct}%
         </span>
       </div>
 
       {/* Progress bar */}
-      <div className="w-full bg-gray-800 rounded-full h-2">
+      <div className="score-track" style={{ height: 6 }}>
         <div
-          className="h-2 rounded-full transition-all duration-300"
-          style={{ width: `${pct}%`, backgroundColor: color }}
+          className="score-fill"
+          style={{
+            width: `${pct}%`,
+            height: "100%",
+            background: color,
+            "--bar-color": color,
+          } as React.CSSProperties}
         />
       </div>
 
@@ -56,13 +79,14 @@ export function ScoreBar({
             fill="none"
             stroke={color}
             strokeWidth="0.8"
-            strokeOpacity="0.7"
+            strokeOpacity="0.5"
           />
           <circle
             cx={dotX}
             cy={dotY}
             r="1.2"
             fill={color}
+            style={{ filter: `drop-shadow(0 0 2px ${color})` }}
           />
         </svg>
       )}

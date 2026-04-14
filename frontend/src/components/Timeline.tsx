@@ -28,46 +28,80 @@ export function Timeline({
   const maxScore = Math.max(...scores, 0.001);
 
   return (
-    <div className="w-full h-full flex items-center gap-3 px-4">
+    <div
+      className="w-full h-full flex items-center gap-3"
+      style={{ padding: "0 1rem" }}
+    >
       {/* Play/pause button */}
       <button
         onClick={onToggle}
-        className="w-9 h-9 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center flex-shrink-0 transition-colors"
+        style={{
+          width: 36,
+          height: 36,
+          borderRadius: "50%",
+          border: "1px solid var(--color-border)",
+          background: "transparent",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          cursor: "pointer",
+          color: "var(--color-text)",
+          transition: "border-color 0.2s, box-shadow 0.2s",
+        }}
+        onMouseEnter={(e) => {
+          const btn = e.currentTarget as HTMLButtonElement;
+          btn.style.borderColor = "var(--color-cyan)";
+          btn.style.boxShadow = "0 0 10px rgba(0,229,255,0.2)";
+        }}
+        onMouseLeave={(e) => {
+          const btn = e.currentTarget as HTMLButtonElement;
+          btn.style.borderColor = "var(--color-border)";
+          btn.style.boxShadow = "none";
+        }}
         aria-label={playing ? "Pause" : "Play"}
       >
         {playing ? (
-          /* Pause icon */
           <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
             fill="currentColor"
-            className="text-white"
+            aria-hidden="true"
           >
-            <rect x="2" y="1" width="4" height="12" rx="1" />
-            <rect x="8" y="1" width="4" height="12" rx="1" />
+            <rect x="1" y="1" width="4" height="10" rx="1" />
+            <rect x="7" y="1" width="4" height="10" rx="1" />
           </svg>
         ) : (
-          /* Play icon */
           <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
             fill="currentColor"
-            className="text-white"
+            aria-hidden="true"
           >
-            <polygon points="2,1 12,7 2,13" />
+            <polygon points="2,1 11,6 2,11" />
           </svg>
         )}
       </button>
 
       {/* Current time label */}
-      <span className="text-gray-400 text-xs font-mono w-6 flex-shrink-0 text-right">
+      <span
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.6875rem",
+          color: "var(--color-text-muted)",
+          fontVariantNumeric: "tabular-nums",
+          width: "1.75rem",
+          flexShrink: 0,
+          textAlign: "right",
+        }}
+      >
         {Math.round(currentSeconds)}s
       </span>
 
       {/* Mini intensity heatmap */}
-      <div className="flex-1 flex items-end gap-px h-8">
+      <div className="flex-1 flex items-end gap-px" style={{ height: 32 }}>
         {frames.map((frame, i) => {
           const intensity = scores[i] / maxScore;
           const isActive = i === frameIndex;
@@ -77,17 +111,21 @@ export function Timeline({
             <button
               key={frame.time}
               onClick={() => onSeek(i)}
-              className="flex-1 flex items-end group"
-              style={{ height: 32 }}
+              className="flex-1 flex items-end"
+              style={{ height: 32, background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
               aria-label={`Seek to frame ${i}`}
             >
               <div
-                className="w-full rounded-sm transition-colors"
                 style={{
+                  width: "100%",
+                  borderRadius: 2,
                   height: barHeight,
                   backgroundColor: isActive
-                    ? "#22d3ee"
-                    : `rgba(75, 85, 99, ${0.3 + intensity * 0.7})`,
+                    ? "var(--color-cyan)"
+                    : `var(--color-surface-light)`,
+                  opacity: isActive ? 1 : 0.3 + intensity * 0.7,
+                  boxShadow: isActive ? "0 0 6px var(--color-cyan-dim)" : "none",
+                  transition: "background-color 0.15s, box-shadow 0.15s",
                 }}
               />
             </button>
@@ -96,7 +134,16 @@ export function Timeline({
       </div>
 
       {/* Total time label */}
-      <span className="text-gray-500 text-xs font-mono w-6 flex-shrink-0">
+      <span
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.6875rem",
+          color: "var(--color-text-muted)",
+          fontVariantNumeric: "tabular-nums",
+          width: "1.75rem",
+          flexShrink: 0,
+        }}
+      >
         {totalSeconds}s
       </span>
     </div>
