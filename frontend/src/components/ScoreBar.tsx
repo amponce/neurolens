@@ -55,7 +55,14 @@ export function ScoreBar({
       </div>
 
       {/* Progress bar */}
-      <div className="score-track" style={{ height: 6 }}>
+      <div
+        className="score-track"
+        style={{
+          height: 6,
+          background: "rgba(0,229,255,0.05)",
+          border: "1px solid rgba(0,229,255,0.06)",
+        }}
+      >
         <div
           className="score-fill"
           style={{
@@ -63,6 +70,9 @@ export function ScoreBar({
             height: "100%",
             background: color,
             "--bar-color": color,
+            ...(value > 0.7 ? {
+              animation: "score-pulse 2s ease-in-out infinite",
+            } : {}),
           } as React.CSSProperties}
         />
       </div>

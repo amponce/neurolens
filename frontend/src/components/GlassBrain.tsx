@@ -1,5 +1,5 @@
-import { useRef, useState, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useState, useMemo, useEffect } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useBrainMesh } from "../hooks/useBrainMesh";
@@ -45,6 +45,7 @@ interface BrainSurfaceProps {
 
 function BrainSurface({ mesh, regions, activations, onHover }: BrainSurfaceProps) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const { invalidate } = useThree();
 
   const geometry = useMemo(() => {
     const geo = new THREE.BufferGeometry();
@@ -69,7 +70,8 @@ function BrainSurface({ mesh, regions, activations, onHover }: BrainSurfaceProps
     return geo;
   }, [mesh]);
 
-  useFrame(() => {
+  // Only update colors when activations data actually changes — not every frame
+  useEffect(() => {
     if (!activations || activations.length === 0) return;
 
     const colorAttr = geometry.getAttribute("color") as THREE.BufferAttribute;
@@ -86,7 +88,8 @@ function BrainSurface({ mesh, regions, activations, onHover }: BrainSurfaceProps
     }
 
     colorAttr.needsUpdate = true;
-  });
+    invalidate();
+  }, [activations, geometry, mesh.vertexCount, invalidate]);
 
   function handlePointerMove(event: THREE.Intersection & { face?: THREE.Face | null }) {
     const face = (event as { face?: THREE.Face | null }).face;
@@ -164,6 +167,9 @@ export function GlassBrain({ activations, frame }: GlassBrainProps) {
       <Canvas
         camera={{ position: [0, 0, 250], fov: 45 }}
         gl={{ antialias: true }}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
+        frameloop="demand"
       >
         <ambientLight intensity={0.4} />
         <directionalLight position={[100, 100, 100]} intensity={0.8} />

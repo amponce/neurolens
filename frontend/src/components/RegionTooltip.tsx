@@ -27,12 +27,12 @@ export function RegionTooltip({ name, category, value }: RegionTooltipProps) {
 
   return (
     <div
-      className="glow-card absolute top-4 left-4 pointer-events-none"
+      className="glass-panel scan-lines hud-bracket absolute top-4 left-4 pointer-events-none"
       style={{
         padding: "0.75rem 1rem",
-        backdropFilter: "blur(8px)",
         borderRadius: 12,
         minWidth: 160,
+        position: "absolute",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "0.4375rem", marginBottom: "0.1875rem" }}>

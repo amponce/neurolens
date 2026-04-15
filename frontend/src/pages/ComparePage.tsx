@@ -17,6 +17,34 @@ const METRIC_LABELS: Record<string, string> = {
   cognitive_load: "Cognitive Load",
 };
 
+// Drifting space particles — copied from UploadPage for consistent starfield
+const DRIFT_PARTICLES = [
+  { left: "8%", top: "85%", delay: "0s", duration: "25s", size: 2, color: "#00e5ff" },
+  { left: "22%", top: "90%", delay: "4s", duration: "32s", size: 1.5, color: "#7c4dff" },
+  { left: "38%", top: "75%", delay: "8s", duration: "28s", size: 3, color: "#00e5ff" },
+  { left: "55%", top: "88%", delay: "2s", duration: "35s", size: 1, color: "#ffab40" },
+  { left: "70%", top: "80%", delay: "6s", duration: "22s", size: 2.5, color: "#7c4dff" },
+  { left: "85%", top: "92%", delay: "10s", duration: "30s", size: 1.5, color: "#00e5ff" },
+  { left: "15%", top: "70%", delay: "12s", duration: "40s", size: 1, color: "#ffab40" },
+  { left: "48%", top: "95%", delay: "15s", duration: "26s", size: 2, color: "#7c4dff" },
+] as const;
+
+// Fixed twinkling stars — copied from UploadPage for consistent starfield
+const STAR_CONFIGS = [
+  { left: "5%", top: "12%", delay: "0s", duration: "4s", size: 1.5 },
+  { left: "18%", top: "8%", delay: "1.2s", duration: "3s", size: 1 },
+  { left: "32%", top: "20%", delay: "2.5s", duration: "5s", size: 2 },
+  { left: "52%", top: "5%", delay: "0.8s", duration: "3.5s", size: 1 },
+  { left: "67%", top: "15%", delay: "3s", duration: "4.5s", size: 1.5 },
+  { left: "78%", top: "22%", delay: "1.5s", duration: "3s", size: 1 },
+  { left: "90%", top: "10%", delay: "4s", duration: "5.5s", size: 2 },
+  { left: "42%", top: "3%", delay: "2s", duration: "4s", size: 1 },
+  { left: "8%", top: "35%", delay: "3.5s", duration: "3.5s", size: 1 },
+  { left: "95%", top: "30%", delay: "0.5s", duration: "4.5s", size: 1.5 },
+  { left: "60%", top: "40%", delay: "2.8s", duration: "3s", size: 1 },
+  { left: "25%", top: "45%", delay: "1s", duration: "5s", size: 1 },
+] as const;
+
 interface DeltaMetric {
   key: string;
   label: string;
@@ -45,6 +73,36 @@ function computeDeltaMetrics(
 
     return { key, label, valueA, valueB, winner, percentDiff };
   });
+}
+
+function OrbitalLoader() {
+  return (
+    <div className="relative flex items-center justify-center" style={{ width: 64, height: 64 }}>
+      <div
+        className="absolute rounded-full"
+        style={{ width: 6, height: 6, background: "#00e5ff", boxShadow: "0 0 10px #00e5ff" }}
+      />
+      <div
+        className="absolute rounded-full"
+        style={{
+          width: 28, height: 28,
+          border: "1px solid #00e5ff",
+          animation: "spin 1.2s linear infinite",
+          borderTopColor: "transparent", borderRightColor: "transparent",
+        }}
+      />
+      <div
+        className="absolute rounded-full"
+        style={{
+          width: 50, height: 50,
+          border: "1px solid #7c4dff",
+          animation: "spin 2.4s linear infinite reverse",
+          borderTopColor: "transparent", borderLeftColor: "transparent",
+        }}
+      />
+      <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
 }
 
 interface UploadSlotProps {
@@ -102,10 +160,31 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
 
   if (isComplete) {
     return (
-      <div className="rounded-xl border border-green-700 bg-gray-900 px-4 py-3 flex items-center gap-2">
-        <span className="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0" />
-        <span className="text-green-400 text-sm font-medium">
-          {label}: Ready
+      <div
+        className="relative glass-panel hud-bracket"
+        style={{
+          padding: "1rem 1.25rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.75rem",
+          background: "rgba(16, 185, 129, 0.06)",
+          border: "1px solid rgba(16, 185, 129, 0.25)",
+        }}
+      >
+        <span
+          style={{
+            width: 8, height: 8,
+            borderRadius: "50%",
+            background: "#10b981",
+            boxShadow: "0 0 8px #10b981",
+            flexShrink: 0,
+          }}
+        />
+        <span
+          className="data-readout"
+          style={{ color: "#10b981", fontSize: "0.8125rem", fontWeight: 600 }}
+        >
+          {label} — READY
         </span>
       </div>
     );
@@ -113,10 +192,24 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
 
   if (isProcessing) {
     return (
-      <div className="rounded-xl border border-gray-700 bg-gray-900 px-4 py-3 flex items-center gap-2">
-        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse flex-shrink-0" />
-        <span className="text-cyan-400 text-sm font-medium">
-          Analyzing {label}…
+      <div
+        className="relative glass-panel pulse-border"
+        style={{
+          padding: "1.25rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.75rem",
+          border: "1px solid rgba(0,229,255,0.3)",
+          boxShadow: "0 0 30px rgba(0,229,255,0.06)",
+        }}
+      >
+        <OrbitalLoader />
+        <span
+          className="data-readout"
+          style={{ color: "var(--color-cyan)", fontSize: "0.75rem", letterSpacing: "0.08em" }}
+        >
+          ANALYZING {label.toUpperCase()}…
         </span>
       </div>
     );
@@ -132,7 +225,22 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
         onKeyDown={handleKeyDown}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="rounded-xl border-2 border-dashed border-gray-700 bg-gray-900 hover:border-cyan-600 hover:bg-gray-800 px-4 py-5 text-center cursor-pointer transition-colors"
+        className="relative glass-panel scan-lines hud-bracket"
+        style={{
+          padding: "2rem 1.5rem",
+          textAlign: "center",
+          cursor: "pointer",
+          border: "1px dashed rgba(0,229,255,0.2)",
+          transition: "border-color 0.2s, box-shadow 0.2s",
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,229,255,0.4)";
+          (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 20px rgba(0,229,255,0.06)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,229,255,0.2)";
+          (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+        }}
       >
         <input
           ref={inputRef}
@@ -141,12 +249,41 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
           className="hidden"
           onChange={handleInputChange}
         />
-        <p className="text-gray-400 text-sm font-medium">Upload {label}</p>
-        <p className="text-gray-600 text-xs mt-1">Click or drag and drop</p>
+        <p
+          className="data-readout"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            color: "var(--color-text)",
+            fontSize: "0.9375rem",
+            letterSpacing: "0.06em",
+          }}
+        >
+          {label}
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            color: "var(--color-text-muted)",
+            fontSize: "0.75rem",
+            marginTop: "0.375rem",
+            letterSpacing: "0.03em",
+          }}
+        >
+          Click or drag and drop
+        </p>
       </div>
 
       {isError && (
-        <div className="rounded-lg bg-red-950 border border-red-700 px-3 py-2 text-red-400 text-xs">
+        <div
+          className="glass-panel-warm"
+          style={{
+            padding: "0.625rem 0.875rem",
+            color: "var(--color-amber)",
+            fontSize: "0.75rem",
+            fontFamily: "var(--font-body)",
+          }}
+        >
           {state.message}
         </div>
       )}
@@ -161,23 +298,42 @@ interface DeltaMetricCardProps {
 function DeltaMetricCard({ metric }: DeltaMetricCardProps) {
   const { label, winner, percentDiff } = metric;
 
-  const winnerDisplay =
-    winner === "even" ? (
-      <span className="text-gray-400 text-sm font-semibold">Even</span>
-    ) : winner === "A" ? (
-      <span className="text-cyan-400 text-sm font-semibold">
-        A +{percentDiff.toFixed(1)}%
-      </span>
-    ) : (
-      <span className="text-purple-400 text-sm font-semibold">
-        B +{percentDiff.toFixed(1)}%
-      </span>
-    );
+  const winnerColor =
+    winner === "even" ? "var(--color-text-muted)" :
+    winner === "A" ? "var(--color-cyan)" : "#a78bfa";
+
+  const winnerText =
+    winner === "even" ? "EVEN" :
+    winner === "A" ? `A  +${percentDiff.toFixed(1)}%` : `B  +${percentDiff.toFixed(1)}%`;
 
   return (
-    <div className="bg-gray-800 rounded-lg p-3 space-y-1">
-      <p className="text-gray-400 text-xs">{label}</p>
-      {winnerDisplay}
+    <div
+      className="relative glass-panel hud-bracket"
+      style={{ padding: "0.875rem 1rem" }}
+    >
+      <p
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "0.625rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: "var(--color-text-muted)",
+          marginBottom: "0.375rem",
+        }}
+      >
+        {label}
+      </p>
+      <p
+        className="data-readout"
+        style={{
+          fontSize: "0.875rem",
+          fontWeight: 700,
+          color: winnerColor,
+          textShadow: winner !== "even" ? `0 0 8px ${winnerColor}` : "none",
+        }}
+      >
+        {winnerText}
+      </p>
     </div>
   );
 }
@@ -240,76 +396,182 @@ export function ComparePage() {
   }, [resultA, frameCount]);
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col gap-4 p-4">
-      {/* Header */}
-      <div className="text-center pt-2">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-          NeuroLens Compare
-        </h1>
-        <p className="text-gray-500 text-sm mt-1">
-          Upload two files to compare brain responses side by side
-        </p>
-      </div>
-
-      {/* Upload slots */}
-      <div className="grid grid-cols-2 gap-4">
-        <UploadSlot
-          label="Content A"
-          state={analysisA.state}
-          upload={analysisA.upload}
+    <div
+      className="grain relative min-h-screen flex flex-col gap-4 p-4 overflow-hidden"
+      style={{ background: "var(--color-void)" }}
+    >
+      {/* Twinkling stars */}
+      {STAR_CONFIGS.map((s, i) => (
+        <div
+          key={`star-${i}`}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            background: "#fff",
+            animation: `twinkle ${s.duration} ${s.delay} ease-in-out infinite`,
+          }}
         />
-        <UploadSlot
-          label="Content B"
-          state={analysisB.state}
-          upload={analysisB.upload}
+      ))}
+
+      {/* Drifting space particles */}
+      {DRIFT_PARTICLES.map((p, i) => (
+        <div
+          key={`drift-${i}`}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            background: p.color,
+            boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
+            animation: `space-drift ${p.duration} ${p.delay} ease-in-out infinite`,
+            opacity: 0,
+          }}
         />
+      ))}
+
+      {/* Nebula glow */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "30%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 700, height: 700,
+          background: "radial-gradient(ellipse, rgba(124,77,255,0.04) 0%, rgba(0,229,255,0.02) 40%, transparent 70%)",
+          animation: "nebula-pulse 14s ease-in-out infinite",
+        }}
+      />
+
+      {/* All content above background layers */}
+      <div className="relative z-10 flex flex-col gap-4">
+        {/* Header */}
+        <div className="text-center pt-2 fade-in">
+          <h1
+            className="gradient-text hud-header uppercase"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+              letterSpacing: "0.14em",
+              display: "inline-block",
+            }}
+          >
+            NEUROLENS
+          </h1>
+          <p
+            className="data-readout fade-in fade-in-delay-1"
+            style={{
+              color: "var(--color-text-muted)",
+              fontSize: "0.8125rem",
+              marginTop: "0.375rem",
+            }}
+          >
+            Comparative neural response analysis
+          </p>
+        </div>
+
+        {/* Upload slots */}
+        <div className="grid grid-cols-2 gap-4 fade-in fade-in-delay-1">
+          <UploadSlot
+            label="Content A"
+            state={analysisA.state}
+            upload={analysisA.upload}
+          />
+          <UploadSlot
+            label="Content B"
+            state={analysisB.state}
+            upload={analysisB.upload}
+          />
+        </div>
+
+        {/* Side-by-side brain viewers — only shown when both ready */}
+        {bothReady && (
+          <>
+            <div className="grid grid-cols-2 gap-4 fade-in" style={{ height: "50vh" }}>
+              {/* Brain A */}
+              <div className="relative glass-panel scan-lines overflow-hidden" style={{ borderRadius: 16 }}>
+                <span
+                  className="absolute top-3 left-3 z-10 glass-panel data-readout"
+                  style={{
+                    fontSize: "0.625rem",
+                    fontWeight: 700,
+                    color: "var(--color-cyan)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.18em",
+                    padding: "0.25rem 0.625rem",
+                    borderRadius: 6,
+                  }}
+                >
+                  ◈ CONTENT A
+                </span>
+                <GlassBrain activations={activationsA} frame={frameA} />
+              </div>
+
+              {/* Brain B */}
+              <div className="relative glass-panel scan-lines overflow-hidden" style={{ borderRadius: 16 }}>
+                <span
+                  className="absolute top-3 left-3 z-10 glass-panel data-readout"
+                  style={{
+                    fontSize: "0.625rem",
+                    fontWeight: 700,
+                    color: "#a78bfa",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.18em",
+                    padding: "0.25rem 0.625rem",
+                    borderRadius: 6,
+                    border: "1px solid rgba(167,139,250,0.2)",
+                    background: "rgba(167,139,250,0.04)",
+                  }}
+                >
+                  ◈ CONTENT B
+                </span>
+                <GlassBrain activations={activationsB} frame={frameB} />
+              </div>
+            </div>
+
+            {/* Delta metrics panel */}
+            <div className="relative glass-panel scan-lines fade-in fade-in-delay-1" style={{ padding: "1.25rem" }}>
+              <h2
+                className="hud-header data-readout"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 600,
+                  fontSize: "0.6875rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.14em",
+                  color: "var(--color-text-muted)",
+                  marginBottom: "1rem",
+                }}
+              >
+                ⬡ Differential Analysis — A vs B
+              </h2>
+              <div className="grid grid-cols-3 gap-3">
+                {deltaMetrics.map((metric) => (
+                  <DeltaMetricCard key={metric.key} metric={metric} />
+                ))}
+              </div>
+            </div>
+
+            {/* Shared timeline */}
+            <div
+              className="relative glass-panel scan-lines fade-in fade-in-delay-2"
+              style={{ height: "3.5rem", borderRadius: 16 }}
+            >
+              <Timeline
+                frames={timelineFrames}
+                frameIndex={safeFrameIndex}
+                playing={playing}
+                onSeek={seek}
+                onToggle={toggle}
+              />
+            </div>
+          </>
+        )}
       </div>
-
-      {/* Side-by-side brain viewers — only shown when both ready */}
-      {bothReady && (
-        <>
-          <div className="grid grid-cols-2 gap-4" style={{ height: "50vh" }}>
-            {/* Brain A */}
-            <div className="bg-gray-900 rounded-xl overflow-hidden relative">
-              <span className="absolute top-3 left-3 z-10 text-xs font-semibold text-cyan-400 bg-gray-900/70 px-2 py-0.5 rounded-full">
-                Content A
-              </span>
-              <GlassBrain activations={activationsA} frame={frameA} />
-            </div>
-
-            {/* Brain B */}
-            <div className="bg-gray-900 rounded-xl overflow-hidden relative">
-              <span className="absolute top-3 left-3 z-10 text-xs font-semibold text-purple-400 bg-gray-900/70 px-2 py-0.5 rounded-full">
-                Content B
-              </span>
-              <GlassBrain activations={activationsB} frame={frameB} />
-            </div>
-          </div>
-
-          {/* Delta metrics panel */}
-          <div className="bg-gray-900 rounded-xl p-4 space-y-3">
-            <h2 className="text-gray-300 text-sm font-semibold">
-              Comparison: Content A vs B
-            </h2>
-            <div className="grid grid-cols-3 gap-3">
-              {deltaMetrics.map((metric) => (
-                <DeltaMetricCard key={metric.key} metric={metric} />
-              ))}
-            </div>
-          </div>
-
-          {/* Shared timeline */}
-          <div className="bg-gray-900 rounded-xl h-14">
-            <Timeline
-              frames={timelineFrames}
-              frameIndex={safeFrameIndex}
-              playing={playing}
-              onSeek={seek}
-              onToggle={toggle}
-            />
-          </div>
-        </>
-      )}
     </div>
   );
 }

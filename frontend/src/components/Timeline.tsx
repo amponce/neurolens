@@ -39,25 +39,29 @@ export function Timeline({
           width: 36,
           height: 36,
           borderRadius: "50%",
-          border: "1px solid var(--color-border)",
-          background: "transparent",
+          border: "1px solid rgba(0,229,255,0.15)",
+          background: "rgba(0,229,255,0.04)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           flexShrink: 0,
           cursor: "pointer",
           color: "var(--color-text)",
-          transition: "border-color 0.2s, box-shadow 0.2s",
+          transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
         }}
         onMouseEnter={(e) => {
           const btn = e.currentTarget as HTMLButtonElement;
           btn.style.borderColor = "var(--color-cyan)";
-          btn.style.boxShadow = "0 0 10px rgba(0,229,255,0.2)";
+          btn.style.boxShadow = "0 0 14px rgba(0,229,255,0.25)";
+          btn.style.background = "rgba(0,229,255,0.08)";
         }}
         onMouseLeave={(e) => {
           const btn = e.currentTarget as HTMLButtonElement;
-          btn.style.borderColor = "var(--color-border)";
+          btn.style.borderColor = "rgba(0,229,255,0.15)";
           btn.style.boxShadow = "none";
+          btn.style.background = "rgba(0,229,255,0.04)";
         }}
         aria-label={playing ? "Pause" : "Play"}
       >
@@ -122,9 +126,11 @@ export function Timeline({
                   height: barHeight,
                   backgroundColor: isActive
                     ? "var(--color-cyan)"
-                    : `var(--color-surface-light)`,
-                  opacity: isActive ? 1 : 0.3 + intensity * 0.7,
-                  boxShadow: isActive ? "0 0 6px var(--color-cyan-dim)" : "none",
+                    : `rgba(0, 229, 255, ${0.08 + intensity * 0.25})`,
+                  opacity: isActive ? 1 : 0.4 + intensity * 0.6,
+                  boxShadow: isActive
+                    ? "0 0 8px var(--color-cyan), 0 0 16px rgba(0,229,255,0.3)"
+                    : "none",
                   transition: "background-color 0.15s, box-shadow 0.15s",
                 }}
               />

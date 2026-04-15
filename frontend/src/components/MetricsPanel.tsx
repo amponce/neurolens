@@ -37,6 +37,7 @@ export function MetricsPanel({ result, frameIndex }: MetricsPanelProps) {
     >
       {/* Header */}
       <h2
+        className="hud-header"
         style={{
           fontFamily: "var(--font-display)",
           fontWeight: 600,
@@ -74,11 +75,17 @@ export function MetricsPanel({ result, frameIndex }: MetricsPanelProps) {
       {/* Top active regions */}
       {topRegions.length > 0 && (
         <>
-          {/* Divider */}
-          <div style={{ borderTop: "1px solid var(--color-border)" }} />
+          {/* Glass divider */}
+          <div
+            style={{
+              borderTop: "1px solid",
+              borderImage: "linear-gradient(90deg, transparent, rgba(0,229,255,0.15), transparent) 1",
+            }}
+          />
 
           <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
             <h3
+              className="hud-header"
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 600,

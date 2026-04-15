@@ -69,7 +69,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
   return (
     <div
-      className="fade-in"
+      className="grain fade-in"
       style={{
         background: "var(--color-void)",
         display: "grid",
@@ -83,7 +83,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
     >
       {/* Header bar — spans full width */}
       <div
-        className="glow-card fade-in"
+        className="relative glass-panel scan-lines fade-in"
         style={{
           gridColumn: "1 / 3",
           gridRow: "1",
@@ -97,20 +97,21 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
       >
         {/* Logo */}
         <span
+          className="gradient-text data-readout"
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 700,
             fontSize: "0.875rem",
             letterSpacing: "0.18em",
-            color: "var(--color-cyan)",
             textTransform: "uppercase",
           }}
         >
-          NeuroLens
+          NEUROLENS
         </span>
 
         {/* Filename */}
         <span
+          className="data-readout"
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "0.8125rem",
@@ -149,7 +150,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Brain viewer */}
       <div
-        className="glow-card fade-in fade-in-delay-1"
+        className="relative glass-panel scan-lines fade-in fade-in-delay-1"
         style={{ gridColumn: "1", gridRow: "2", overflow: "hidden", borderRadius: 16 }}
       >
         <GlassBrain activations={activations} frame={currentFrame} />
@@ -157,7 +158,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Right sidebar — spans rows 2 and 3 */}
       <div
-        className="glow-card fade-in fade-in-delay-2"
+        className="relative glass-panel scan-lines fade-in fade-in-delay-2"
         style={{ gridColumn: "2", gridRow: "2 / 4", overflow: "hidden", borderRadius: 16 }}
       >
         <MetricsPanel result={result} frameIndex={frameIndex} />
@@ -165,7 +166,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Timeline */}
       <div
-        className="glow-card fade-in fade-in-delay-3"
+        className="relative glass-panel scan-lines fade-in fade-in-delay-3"
         style={{ gridColumn: "1", gridRow: "3", borderRadius: 16 }}
       >
         <Timeline
