@@ -8,6 +8,7 @@ class AnalysisStatus(BaseModel):
     status: str
     progress: float
     error: str | None = None
+    message: str | None = None
 
 
 class FrameScores(BaseModel):

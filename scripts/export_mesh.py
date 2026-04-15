@@ -4,6 +4,7 @@ for the React frontend.
 
 Output files:
   frontend/public/brain-mesh.json
+  frontend/public/brain-mesh-inflated.json
   frontend/public/brain-regions.json
 """
 
@@ -58,6 +59,223 @@ REGION_TO_CATEGORY: dict[str, str] = {}
 for cat_key, names in CATEGORY_REGIONS.items():
     for name in names:
         REGION_TO_CATEGORY[name] = cat_key
+
+# ---------------------------------------------------------------------------
+# HCP MMP1.0 full descriptive names
+# Source: Glasser et al. 2016, "A multi-modal parcellation of human cerebral cortex"
+# ---------------------------------------------------------------------------
+HCP_FULL_NAMES: dict[str, str] = {
+    "V1": "Primary Visual Cortex",
+    "V2": "Secondary Visual Cortex",
+    "V3": "Third Visual Area",
+    "V4": "Fourth Visual Area",
+    "V3A": "Visual Area V3A",
+    "V3B": "Visual Area V3B",
+    "V3CD": "Dorsal V3 Complex",
+    "V6": "Sixth Visual Area",
+    "V6A": "Visual Area V6A",
+    "V7": "Seventh Visual Area",
+    "V8": "Eighth Visual Area (VO1)",
+    "MT": "Middle Temporal Visual Area (V5)",
+    "MST": "Medial Superior Temporal Area",
+    "FST": "Fundus of Superior Temporal Sulcus",
+    "FFC": "Fusiform Face Complex",
+    "VVC": "Ventral Visual Complex",
+    "VMV1": "Ventromedial Visual Area 1",
+    "VMV2": "Ventromedial Visual Area 2",
+    "VMV3": "Ventromedial Visual Area 3",
+    "PIT": "Posterior Inferotemporal Area",
+    "PH": "Parahippocampal Area",
+    "LO1": "Lateral Occipital Area 1",
+    "LO2": "Lateral Occipital Area 2",
+    "LO3": "Lateral Occipital Area 3",
+    "V1": "Primary Visual Cortex",
+    "A1": "Primary Auditory Cortex",
+    "LBelt": "Lateral Belt of Auditory Cortex",
+    "MBelt": "Medial Belt of Auditory Cortex",
+    "PBelt": "Parabelt of Auditory Cortex",
+    "RI": "Retroinsular Cortex",
+    "A4": "Auditory Association Area 4",
+    "A5": "Auditory Association Area 5",
+    "STGa": "Anterior Superior Temporal Gyrus",
+    "TA2": "Temporal Area 2 (Auditory)",
+    "OFC": "Orbitofrontal Cortex",
+    "10v": "Anterior Prefrontal Cortex (Ventral)",
+    "10r": "Anterior Prefrontal Cortex (Rostral)",
+    "10d": "Anterior Prefrontal Cortex (Dorsal)",
+    "10pp": "Polar Prefrontal Cortex",
+    "a24": "Anterior Cingulate Area 24",
+    "p32": "Posterior Cingulate Area 32",
+    "s32": "Subgenual Cingulate Area 32",
+    "25": "Subgenual Cingulate Cortex (Area 25)",
+    "pOFC": "Posterior Orbitofrontal Cortex",
+    "13l": "Orbitofrontal Area 13l",
+    "Ig": "Insular Granular Cortex",
+    "PCC": "Posterior Cingulate Cortex",
+    "RSC": "Retrosplenial Cortex",
+    "POS1": "Parieto-Occipital Sulcus Area 1",
+    "POS2": "Parieto-Occipital Sulcus Area 2",
+    "PreS": "Presubiculum",
+    "H": "Hippocampus",
+    "EC": "Entorhinal Cortex",
+    "PeEc": "Perirhinal Ectorhinal Cortex",
+    "PHA1": "Parahippocampal Area 1",
+    "PHA2": "Parahippocampal Area 2",
+    "PHA3": "Parahippocampal Area 3",
+    "44": "Broca's Area (Pars Opercularis)",
+    "45": "Broca's Area (Pars Triangularis)",
+    "47l": "Inferior Frontal Area 47l",
+    "47m": "Inferior Frontal Area 47m",
+    "47s": "Inferior Frontal Area 47s",
+    "TPOJ1": "Temporo-Parieto-Occipital Junction 1",
+    "TPOJ2": "Temporo-Parieto-Occipital Junction 2",
+    "TPOJ3": "Temporo-Parieto-Occipital Junction 3",
+    "STV": "Superior Temporal Visual Area",
+    "PSL": "Perisylvian Language Area",
+    "SFL": "Superior Frontal Language Area",
+    "STSdp": "Superior Temporal Sulcus (Dorsal Posterior)",
+    "STSda": "Superior Temporal Sulcus (Dorsal Anterior)",
+    "STSvp": "Superior Temporal Sulcus (Ventral Posterior)",
+    "STSva": "Superior Temporal Sulcus (Ventral Anterior)",
+    "8C": "Frontal Eye Field Complex (Area 8C)",
+    "46": "Dorsolateral Prefrontal Cortex (Area 46)",
+    "p9-46v": "Prefrontal Area p9-46v",
+    "8Av": "Frontal Area 8Av",
+    "8Ad": "Frontal Area 8Ad",
+    "FEF": "Frontal Eye Fields",
+    "IPS1": "Intraparietal Sulcus Area 1",
+    "8BL": "Frontal Area 8BL",
+    "9m": "Medial Prefrontal Area 9",
+    "9p": "Posterior Prefrontal Area 9",
+    "i6-8": "Inferior Frontal Area 6-8",
+    "s6-8": "Superior Frontal Area 6-8",
+    "1": "Primary Somatosensory Cortex (Area 1)",
+    "2": "Somatosensory Area 2",
+    "3a": "Somatosensory Area 3a",
+    "3b": "Somatosensory Area 3b",
+    "4": "Primary Motor Cortex (Area 4)",
+    "5L": "Superior Parietal Area 5L",
+    "5m": "Medial Superior Parietal Area 5m",
+    "5mv": "Medial Ventral Parietal Area 5mv",
+    "6a": "Premotor Area 6a",
+    "6d": "Dorsal Premotor Area 6d",
+    "6ma": "Supplementary Motor Area 6ma",
+    "6mp": "Pre-Supplementary Motor Area 6mp",
+    "6r": "Rostral Premotor Area 6r",
+    "6v": "Ventral Premotor Area 6v",
+    "7AL": "Superior Parietal Area 7AL",
+    "7Am": "Medial Superior Parietal Area 7Am",
+    "7PC": "Postcentral Area 7PC",
+    "7PL": "Lateral Superior Parietal Area 7PL",
+    "7Pm": "Medial Superior Parietal Area 7Pm",
+    "8BM": "Medial Frontal Area 8BM",
+    "9a": "Prefrontal Area 9a",
+    "11l": "Orbitofrontal Area 11l",
+    "23c": "Posterior Cingulate Area 23c",
+    "23d": "Dorsal Posterior Cingulate Area 23d",
+    "24dd": "Dorsal Anterior Cingulate Area 24dd",
+    "24dv": "Ventral Dorsal Cingulate Area 24dv",
+    "31a": "Cingulate Area 31a",
+    "31pd": "Posterior Dorsal Cingulate Area 31pd",
+    "31pv": "Posterior Ventral Cingulate Area 31pv",
+    "33pr": "Pregenual Cingulate Area 33",
+    "43": "Subcentral Area (Gustatory Cortex)",
+    "52": "Parainsular Area 52",
+    "55b": "Premotor Area 55b",
+    "a9-46v": "Anterior Prefrontal Area a9-46v",
+    "a10p": "Anterior Polar Area 10p",
+    "a24pr": "Anterior Cingulate Area 24pr",
+    "a32pr": "Anterior Cingulate Area 32pr",
+    "a47r": "Anterior Inferior Frontal Area 47r",
+    "AIP": "Anterior Intraparietal Area",
+    "AVI": "Anterior Ventral Insular Area",
+    "d23ab": "Dorsal Area 23a/b",
+    "d32": "Dorsal Cingulate Area 32",
+    "DVT": "Dorsal Transitional Visual Area",
+    "FOP1": "Frontal Opercular Area 1",
+    "FOP2": "Frontal Opercular Area 2",
+    "FOP3": "Frontal Opercular Area 3",
+    "FOP4": "Frontal Opercular Area 4",
+    "FOP5": "Frontal Opercular Area 5",
+    "IP0": "Intraparietal Area 0",
+    "IP1": "Intraparietal Area 1",
+    "IP2": "Intraparietal Area 2",
+    "IFJa": "Inferior Frontal Junction Area (Anterior)",
+    "IFJp": "Inferior Frontal Junction Area (Posterior)",
+    "IFSa": "Inferior Frontal Sulcus (Anterior)",
+    "IFSp": "Inferior Frontal Sulcus (Posterior)",
+    "Ins": "Insular Cortex",
+    "LIPd": "Lateral Intraparietal (Dorsal)",
+    "LIPv": "Lateral Intraparietal (Ventral)",
+    "MIP": "Medial Intraparietal Area",
+    "MI": "Middle Insular Area",
+    "OP1": "Parietal Opercular Area 1",
+    "OP2-3": "Parietal Opercular Area 2-3",
+    "OP4": "Parietal Opercular Area 4",
+    "OPi": "Inferior Parietal Opercular Area",
+    "p10p": "Posterior Polar Area 10p",
+    "p24": "Posterior Area 24",
+    "p24pr": "Posterior Cingulate Area 24pr",
+    "p32pr": "Posterior Area 32pr",
+    "p47r": "Posterior Inferior Frontal Area 47r",
+    "PCV": "Precuneus Visual Area",
+    "PEF": "Premotor Eye Field",
+    "PF": "Inferior Parietal Area PF",
+    "PFcm": "Inferior Parietal Area PFcm",
+    "PFm": "Inferior Parietal Area PFm",
+    "PFop": "Inferior Parietal Area PFop",
+    "PFt": "Inferior Parietal Area PFt",
+    "PGi": "Inferior Parietal Area PGi",
+    "PGs": "Superior Parietal Area PGs",
+    "PGp": "Posterior Parietal Area PGp",
+    "PHT": "Parahippocampal Transition Area",
+    "PI": "Para-Insular Area",
+    "Pir": "Piriform Cortex",
+    "PoI1": "Posterior Insular Area 1",
+    "PoI2": "Posterior Insular Area 2",
+    "ProS": "Prostriate Area",
+    "RSC": "Retrosplenial Complex",
+    "SCEF": "Supplementary and Cingulate Eye Field",
+    "STV": "Superior Temporal Visual Area",
+    "STSdp": "Superior Temporal Sulcus (Dorsal Posterior)",
+    "STSda": "Superior Temporal Sulcus (Dorsal Anterior)",
+    "STSvp": "Superior Temporal Sulcus (Ventral Posterior)",
+    "STSva": "Superior Temporal Sulcus (Ventral Anterior)",
+    "TF": "Temporal Fusiform Area TF",
+    "TE1a": "Temporal Area TE1a",
+    "TE1m": "Temporal Area TE1m",
+    "TE1p": "Temporal Area TE1p",
+    "TE2a": "Temporal Area TE2a",
+    "TE2p": "Temporal Area TE2p",
+    "TGd": "Temporal Polar (Dorsal)",
+    "TGv": "Temporal Polar (Ventral)",
+    "V3A": "Visual Area V3A",
+    "V3B": "Visual Area V3B",
+    "V6": "Sixth Visual Area",
+    "V6A": "Visual Area V6A",
+    "ProS": "Prostriate Area",
+    "DVT": "Dorsal Transitional Visual Area",
+    "PCV": "Precuneus Visual Area",
+    "IPS1": "Intraparietal Sulcus Area 1",
+    "MIP": "Medial Intraparietal Area",
+    "LIPd": "Lateral Intraparietal (Dorsal)",
+    "LIPv": "Lateral Intraparietal (Ventral)",
+    "AIP": "Anterior Intraparietal Area",
+    "VIP": "Ventral Intraparietal Area",
+    "Pol1": "Polar Area 1",
+    "Pol2": "Polar Area 2",
+    "TE2p": "Temporal Area TE2p",
+    "STPSa": "Superior Temporal Polysensory (Anterior)",
+    "STPs": "Superior Temporal Polysensory Area",
+    "PreS": "Presubiculum",
+    "Pir": "Piriform Cortex",
+    "AAIC": "Anterior Agranular Insular Complex",
+    "7m": "Medial Area 7m (Precuneus)",
+    "9-46d": "Dorsal Prefrontal Area 9-46d",
+    "?": "Unknown / Unassigned Region",
+    "V4t": "Visual Area V4 (Transitional)",
+    "v23ab": "Ventral Area 23a/b",
+}
 
 CATEGORY_LABELS: dict[str, str] = {
     "visual_attention": "Visual Attention",
@@ -140,6 +358,17 @@ def main() -> None:
     rh_coords = np.array(rh_mesh[0])   # (N_R, 3)
     rh_faces  = np.array(rh_mesh[1])   # (F_R, 3)
 
+    # ------------------------------------------------------------------
+    # 2b. Load inflated hemisphere meshes
+    # ------------------------------------------------------------------
+    print("Loading inflated left hemisphere …")
+    lh_infl = nilearn.surface.load_surf_mesh(fsaverage["infl_left"])
+    lh_infl_coords = np.array(lh_infl[0])  # (N_L, 3)
+
+    print("Loading inflated right hemisphere …")
+    rh_infl = nilearn.surface.load_surf_mesh(fsaverage["infl_right"])
+    rh_infl_coords = np.array(rh_infl[0])  # (N_R, 3)
+
     n_left = lh_coords.shape[0]
 
     # ------------------------------------------------------------------
@@ -150,6 +379,11 @@ def main() -> None:
     all_positions = np.concatenate([lh_coords, rh_coords], axis=0)  # (N, 3)
     all_faces     = np.concatenate([lh_faces, rh_faces_offset], axis=0)  # (F, 3)
 
+    # Inflated positions (same faces/topology)
+    all_infl_positions = np.concatenate(
+        [lh_infl_coords, rh_infl_coords], axis=0
+    )  # (N, 3)
+
     n_vertices = all_positions.shape[0]
     n_faces    = all_faces.shape[0]
     print(f"  Vertices: {n_vertices}, Faces: {n_faces}")
@@ -159,6 +393,9 @@ def main() -> None:
     # ------------------------------------------------------------------
     print("Computing vertex normals …")
     all_normals = compute_vertex_normals(all_positions, all_faces)
+
+    print("Computing inflated vertex normals …")
+    all_infl_normals = compute_vertex_normals(all_infl_positions, all_faces)
 
     # ------------------------------------------------------------------
     # 6. Per-vertex HCP region labels
@@ -212,8 +449,11 @@ def main() -> None:
             idxs = np.where(np.array(vertex_labels) == region_name)[0]
             centroid = compute_region_centroid(all_positions, idxs)
 
+        full_name = HCP_FULL_NAMES.get(region_name, region_name)
+
         regions_out[str(rid)] = {
             "name": region_name,
+            "fullName": full_name,
             "category": category,
             "centroid": [round(v, 4) for v in centroid],
         }
@@ -233,9 +473,25 @@ def main() -> None:
         "regionIds":   region_ids,
         "vertexCount": n_vertices,
         "faceCount":   n_faces,
+        "leftCount":   n_left,
     }
     with open(mesh_path, "w") as fh:
         json.dump(mesh_payload, fh, separators=(",", ":"))
+
+    # brain-mesh-inflated.json
+    infl_mesh_path = os.path.join(PUBLIC_DIR, "brain-mesh-inflated.json")
+    print(f"Writing {infl_mesh_path} …")
+    infl_mesh_payload = {
+        "positions":   [round(float(v), 4) for v in all_infl_positions.ravel()],
+        "normals":     [round(float(v), 6) for v in all_infl_normals.ravel()],
+        "faces":       all_faces.ravel().tolist(),
+        "regionIds":   region_ids,
+        "vertexCount": n_vertices,
+        "faceCount":   n_faces,
+        "leftCount":   n_left,
+    }
+    with open(infl_mesh_path, "w") as fh:
+        json.dump(infl_mesh_payload, fh, separators=(",", ":"))
 
     # brain-regions.json
     regions_path = os.path.join(PUBLIC_DIR, "brain-regions.json")
@@ -248,8 +504,9 @@ def main() -> None:
         json.dump(regions_payload, fh, separators=(",", ":"), indent=2)
 
     print("Done.")
-    print(f"  brain-mesh.json    : {os.path.getsize(mesh_path) / 1e6:.1f} MB")
-    print(f"  brain-regions.json : {os.path.getsize(regions_path) / 1e3:.1f} KB")
+    print(f"  brain-mesh.json          : {os.path.getsize(mesh_path) / 1e6:.1f} MB")
+    print(f"  brain-mesh-inflated.json : {os.path.getsize(infl_mesh_path) / 1e6:.1f} MB")
+    print(f"  brain-regions.json       : {os.path.getsize(regions_path) / 1e3:.1f} KB")
 
 
 if __name__ == "__main__":

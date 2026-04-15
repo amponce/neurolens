@@ -66,18 +66,22 @@ def load_model() -> None:
 
     logger.info("Loading TRIBE v2 model…")
     cache_dir = _BACKEND_DIR / "cache"
-    # Override all device settings to CPU (config ships with device: cuda)
+
+    import torch
+    # Use MPS for brain model inference; extractors only support cpu/cuda
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    logger.info("Using device: %s (extractors on CPU)", device)
+
     _model = TribeModel.from_pretrained(
         "facebook/tribev2",
         cache_folder=str(cache_dir),
-        device="cpu",
+        device=device,
         config_update={
-            "data.audio_feature.device": "cpu",
-            "data.video_feature.device": "cpu",
             "data.text_feature.device": "cpu",
-            "data.audio_feature.infra.cluster": None,
-            "data.video_feature.infra.cluster": None,
-            "data.text_feature.infra.cluster": None,
+            "data.audio_feature.device": "cpu",
+            "data.video_feature.image.device": "cpu",
+            # Use non-gated mirror of Llama-3.2-3B (same weights/architecture).
+            "data.text_feature.model_name": "unsloth/Llama-3.2-3B",
         },
     )
     logger.info("TRIBE v2 model loaded.")
@@ -101,13 +105,17 @@ def _result_path(analysis_id: str) -> Path:
     return _RESULTS_DIR / analysis_id / "result.json"
 
 
-def _write_status(analysis_id: str, status: str, progress: float, error: str | None = None) -> None:
+def _write_status(
+    analysis_id: str, status: str, progress: float,
+    error: str | None = None, message: str | None = None,
+) -> None:
     """Persist status to disk as an immutable new file write."""
     status_data = {
         "id": analysis_id,
         "status": status,
         "progress": progress,
         "error": error,
+        "message": message,
     }
     path = _status_path(analysis_id)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -179,18 +187,21 @@ def get_analysis_result(analysis_id: str) -> AnalysisResult | None:
 def _run_analysis(analysis_id: str, file_path: Path, input_type: str) -> None:
     """Background thread that runs TRIBE v2 inference and stores results."""
     try:
-        _write_status(analysis_id, "processing", 0.1)
+        _write_status(analysis_id, "processing", 0.05,
+                      message="Preparing input…")
 
         # Step 1: Build events dataframe
         kwargs = {f"{input_type}_path": str(file_path)}
         events = _model.get_events_dataframe(**kwargs)
 
-        _write_status(analysis_id, "processing", 0.3)
+        _write_status(analysis_id, "processing", 0.1,
+                      message="Extracting features (this is the slow part)…")
 
         # Step 2: Run model prediction
         preds, segments = _model.predict(events, verbose=False)
 
-        _write_status(analysis_id, "processing", 0.7)
+        _write_status(analysis_id, "processing", 0.85,
+                      message="Computing brain scores…")
 
         # Step 3: Build per-frame scores
         n_timesteps = preds.shape[0]
@@ -240,7 +251,15 @@ def _run_analysis(analysis_id: str, file_path: Path, input_type: str) -> None:
         ]
 
         # Step 7: Subsample vertex activations (every 10th vertex)
-        vertex_activations: list[list[float]] = preds[:, ::10].tolist()
+        # Normalize to 0-1 range for frontend color mapping
+        subsampled = preds[:, ::10]
+        vmin = float(np.percentile(subsampled, 2))
+        vmax = float(np.percentile(subsampled, 98))
+        if vmax - vmin < 1e-6:
+            vmax = vmin + 1.0
+        normalized = (subsampled - vmin) / (vmax - vmin)
+        normalized = np.clip(normalized, 0.0, 1.0)
+        vertex_activations: list[list[float]] = normalized.tolist()
 
         # Step 8: Save full activations as .npy
         result_dir = _RESULTS_DIR / analysis_id

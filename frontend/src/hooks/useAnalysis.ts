@@ -5,7 +5,7 @@ import type { AnalysisResult } from "../types";
 type AnalysisState =
   | { phase: "idle" }
   | { phase: "uploading" }
-  | { phase: "processing"; progress: number }
+  | { phase: "processing"; progress: number; message?: string }
   | { phase: "complete"; result: AnalysisResult }
   | { phase: "error"; message: string };
 
@@ -64,7 +64,7 @@ export function useAnalysis(): UseAnalysisReturn {
             clearPolling();
             setState({ phase: "error", message: "Analysis not found" });
           } else {
-            setState({ phase: "processing", progress: response.progress });
+            setState({ phase: "processing", progress: response.progress, message: response.message });
           }
         } catch (err: unknown) {
           clearPolling();

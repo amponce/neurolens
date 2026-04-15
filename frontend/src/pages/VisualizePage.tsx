@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { AnalysisResult } from "../types";
+import { pollAnalysis } from "../api";
 import { GlassBrain } from "../components/GlassBrain";
 import { Timeline } from "../components/Timeline";
 import { MetricsPanel } from "../components/MetricsPanel";
@@ -29,15 +30,39 @@ function EmptyState({ message }: { message: string }) {
 
 export function VisualizePage() {
   const { id } = useParams<{ id: string }>();
+  const [fetchedResult, setFetchedResult] = useState<AnalysisResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const sessionResult = id ? loadResult(id) : null;
+
+  useEffect(() => {
+    if (!id || sessionResult) return;
+    setLoading(true);
+    pollAnalysis(id)
+      .then((res) => {
+        if (res.status === "complete") {
+          setFetchedResult(res as AnalysisResult);
+        } else {
+          setError("Analysis is still processing. Please wait.");
+        }
+      })
+      .catch(() => setError("Failed to load analysis."))
+      .finally(() => setLoading(false));
+  }, [id, sessionResult]);
 
   if (!id) {
     return <EmptyState message="No analysis ID provided." />;
   }
 
-  const result = loadResult(id);
+  const result = sessionResult ?? fetchedResult;
+
+  if (loading) {
+    return <EmptyState message="Loading analysis..." />;
+  }
 
   if (!result) {
-    return <EmptyState message="Analysis not found in session. Please upload a file first." />;
+    return <EmptyState message={error ?? "Analysis not found. Please upload a file first."} />;
   }
 
   return <VisualizeLayout result={result} />;
@@ -74,17 +99,17 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
         background: "var(--color-void)",
         display: "grid",
         gridTemplateColumns: "1fr 300px",
-        gridTemplateRows: "48px 1fr 80px",
+        gridTemplateRows: "44px 1fr 72px",
         height: "100vh",
         width: "100vw",
-        gap: 8,
-        padding: 8,
+        gap: 6,
+        padding: 6,
       }}
     >
-      {/* Minority Report background grid */}
+      {/* Background */}
       <div className="mr-grid" />
-      <div className="mr-glow" style={{ top: "25%", left: "15%", width: 500, height: 500, background: "rgba(0, 229, 255, 0.10)" }} />
-      <div className="mr-glow" style={{ top: "55%", right: "5%", width: 400, height: 400, background: "rgba(124, 77, 255, 0.08)" }} />
+      <div className="mr-glow" style={{ top: "20%", left: "10%", width: 500, height: 500, background: "rgba(167, 139, 250, 0.06)" }} />
+      <div className="mr-glow" style={{ top: "55%", right: "5%", width: 400, height: 400, background: "rgba(125, 211, 252, 0.04)" }} />
       {/* Header bar — spans full width */}
       <div
         className="relative glass-panel fade-in"

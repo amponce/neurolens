@@ -39,8 +39,8 @@ export function Timeline({
           width: 36,
           height: 36,
           borderRadius: "50%",
-          border: "1px solid rgba(0,229,255,0.15)",
-          background: "rgba(0,229,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.04)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           display: "flex",
@@ -53,15 +53,15 @@ export function Timeline({
         }}
         onMouseEnter={(e) => {
           const btn = e.currentTarget as HTMLButtonElement;
-          btn.style.borderColor = "var(--color-cyan)";
-          btn.style.boxShadow = "0 0 14px rgba(0,229,255,0.25)";
-          btn.style.background = "rgba(0,229,255,0.08)";
+          btn.style.borderColor = "rgba(255,255,255,0.15)";
+          btn.style.boxShadow = "0 0 10px rgba(167,139,250,0.15)";
+          btn.style.background = "rgba(255,255,255,0.08)";
         }}
         onMouseLeave={(e) => {
           const btn = e.currentTarget as HTMLButtonElement;
-          btn.style.borderColor = "rgba(0,229,255,0.15)";
+          btn.style.borderColor = "rgba(255,255,255,0.08)";
           btn.style.boxShadow = "none";
-          btn.style.background = "rgba(0,229,255,0.04)";
+          btn.style.background = "rgba(255,255,255,0.04)";
         }}
         aria-label={playing ? "Pause" : "Play"}
       >
@@ -125,13 +125,13 @@ export function Timeline({
                   borderRadius: 2,
                   height: barHeight,
                   backgroundColor: isActive
-                    ? "var(--color-cyan)"
-                    : `rgba(0, 229, 255, ${0.08 + intensity * 0.25})`,
-                  opacity: isActive ? 1 : 0.4 + intensity * 0.6,
+                    ? "#a78bfa"
+                    : `rgba(167, 139, 250, ${0.1 + intensity * 0.3})`,
+                  opacity: isActive ? 1 : 0.35 + intensity * 0.65,
                   boxShadow: isActive
-                    ? "0 0 8px var(--color-cyan), 0 0 16px rgba(0,229,255,0.3)"
+                    ? "0 0 6px rgba(167,139,250,0.5), 0 0 12px rgba(167,139,250,0.2)"
                     : "none",
-                  transition: "background-color 0.15s, box-shadow 0.15s",
+                  transition: "background-color 0.2s, box-shadow 0.2s, opacity 0.2s",
                 }}
               />
             </button>

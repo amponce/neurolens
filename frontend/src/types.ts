@@ -31,10 +31,12 @@ export interface BrainMesh {
   regionIds: number[];
   vertexCount: number;
   faceCount: number;
+  leftCount?: number;
 }
 
 export interface RegionInfo {
   name: string;
+  fullName?: string;
   category: string;
   centroid: [number, number, number];
 }

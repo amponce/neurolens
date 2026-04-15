@@ -32,12 +32,12 @@ interface GlowingSphereProps {
 
 function GlowingSphere({ node }: GlowingSphereProps) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const baseScale = 1 + node.intensity * 3;
+  const baseScale = 0.4 + node.intensity * 0.8;
   const color = METRIC_COLORS[node.category] ?? "#ffffff";
 
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
-    const pulse = 1 + 0.15 * Math.sin(clock.elapsedTime * 2.5 + node.intensity * Math.PI);
+    const pulse = 1 + 0.1 * Math.sin(clock.elapsedTime * 2 + node.intensity * Math.PI);
     const scale = baseScale * pulse;
     meshRef.current.scale.setScalar(scale);
   });
@@ -48,13 +48,14 @@ function GlowingSphere({ node }: GlowingSphereProps) {
       position={node.position}
       scale={baseScale}
     >
-      <sphereGeometry args={[1.5, 16, 16]} />
+      <sphereGeometry args={[1, 12, 12]} />
       <meshStandardMaterial
         color={color}
         emissive={color}
-        emissiveIntensity={node.intensity * 2}
+        emissiveIntensity={node.intensity * 1.2}
         transparent
-        opacity={0.6 + node.intensity * 0.4}
+        opacity={0.3 + node.intensity * 0.35}
+        depthWrite={false}
       />
     </mesh>
   );
@@ -123,9 +124,10 @@ function ParticleStream({ connection, index }: ParticleStreamProps) {
   return (
     <points ref={pointsRef} geometry={geometry}>
       <pointsMaterial
-        size={1.5}
-        color="#4fc3f7"
+        size={0.8}
+        color="#7dd3fc"
         transparent
+        opacity={0.4}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />

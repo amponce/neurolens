@@ -2,6 +2,7 @@
   "regions":{
     "1":{
       "name":"1",
+      "fullName":"Primary Somatosensory Cortex (Area 1)",
       "category":"other",
       "centroid":[
         -1.0744,
@@ -11,6 +12,7 @@
     },
     "2":{
       "name":"10d",
+      "fullName":"Anterior Prefrontal Cortex (Dorsal)",
       "category":"emotional_response",
       "centroid":[
         -2.4253,
@@ -20,6 +22,7 @@
     },
     "3":{
       "name":"10pp",
+      "fullName":"Polar Prefrontal Cortex",
       "category":"other",
       "centroid":[
         3.3407,
@@ -29,6 +32,7 @@
     },
     "4":{
       "name":"10r",
+      "fullName":"Anterior Prefrontal Cortex (Rostral)",
       "category":"emotional_response",
       "centroid":[
         0.0399,
@@ -38,6 +42,7 @@
     },
     "5":{
       "name":"10v",
+      "fullName":"Anterior Prefrontal Cortex (Ventral)",
       "category":"emotional_response",
       "centroid":[
         0.4559,
@@ -47,6 +52,7 @@
     },
     "6":{
       "name":"11l",
+      "fullName":"Orbitofrontal Area 11l",
       "category":"other",
       "centroid":[
         4.0472,
@@ -56,6 +62,7 @@
     },
     "7":{
       "name":"13l",
+      "fullName":"Orbitofrontal Area 13l",
       "category":"emotional_response",
       "centroid":[
         -4.2732,
@@ -65,6 +72,7 @@
     },
     "8":{
       "name":"2",
+      "fullName":"Somatosensory Area 2",
       "category":"other",
       "centroid":[
         2.3173,
@@ -74,6 +82,7 @@
     },
     "9":{
       "name":"23c",
+      "fullName":"Posterior Cingulate Area 23c",
       "category":"other",
       "centroid":[
         0.3194,
@@ -83,6 +92,7 @@
     },
     "10":{
       "name":"23d",
+      "fullName":"Dorsal Posterior Cingulate Area 23d",
       "category":"other",
       "centroid":[
         0.3874,
@@ -92,6 +102,7 @@
     },
     "11":{
       "name":"24dd",
+      "fullName":"Dorsal Anterior Cingulate Area 24dd",
       "category":"other",
       "centroid":[
         -0.8342,
@@ -101,6 +112,7 @@
     },
     "12":{
       "name":"24dv",
+      "fullName":"Ventral Dorsal Cingulate Area 24dv",
       "category":"other",
       "centroid":[
         0.7624,
@@ -110,6 +122,7 @@
     },
     "13":{
       "name":"25",
+      "fullName":"Subgenual Cingulate Cortex (Area 25)",
       "category":"emotional_response",
       "centroid":[
         0.0365,
@@ -119,6 +132,7 @@
     },
     "14":{
       "name":"31a",
+      "fullName":"Cingulate Area 31a",
       "category":"other",
       "centroid":[
         0.1927,
@@ -128,6 +142,7 @@
     },
     "15":{
       "name":"31pd",
+      "fullName":"Posterior Dorsal Cingulate Area 31pd",
       "category":"other",
       "centroid":[
         -0.3034,
@@ -137,6 +152,7 @@
     },
     "16":{
       "name":"31pv",
+      "fullName":"Posterior Ventral Cingulate Area 31pv",
       "category":"other",
       "centroid":[
         0.6229,
@@ -146,6 +162,7 @@
     },
     "17":{
       "name":"33pr",
+      "fullName":"Pregenual Cingulate Area 33",
       "category":"other",
       "centroid":[
         0.4022,
@@ -155,6 +172,7 @@
     },
     "18":{
       "name":"3a",
+      "fullName":"Somatosensory Area 3a",
       "category":"other",
       "centroid":[
         -2.5581,
@@ -164,6 +182,7 @@
     },
     "19":{
       "name":"3b",
+      "fullName":"Somatosensory Area 3b",
       "category":"other",
       "centroid":[
         -2.7603,
@@ -173,6 +192,7 @@
     },
     "20":{
       "name":"4",
+      "fullName":"Primary Motor Cortex (Area 4)",
       "category":"other",
       "centroid":[
         -0.7662,
@@ -182,6 +202,7 @@
     },
     "21":{
       "name":"43",
+      "fullName":"Subcentral Area (Gustatory Cortex)",
       "category":"other",
       "centroid":[
         6.3479,
@@ -191,6 +212,7 @@
     },
     "22":{
       "name":"44",
+      "fullName":"Broca's Area (Pars Opercularis)",
       "category":"language_processing",
       "centroid":[
         0.114,
@@ -200,6 +222,7 @@
     },
     "23":{
       "name":"45",
+      "fullName":"Broca's Area (Pars Triangularis)",
       "category":"language_processing",
       "centroid":[
         -7.1726,
@@ -209,6 +232,7 @@
     },
     "24":{
       "name":"46",
+      "fullName":"Dorsolateral Prefrontal Cortex (Area 46)",
       "category":"cognitive_load",
       "centroid":[
         1.0656,
@@ -218,6 +242,7 @@
     },
     "25":{
       "name":"47l",
+      "fullName":"Inferior Frontal Area 47l",
       "category":"language_processing",
       "centroid":[
         -3.746,
@@ -227,6 +252,7 @@
     },
     "26":{
       "name":"47m",
+      "fullName":"Inferior Frontal Area 47m",
       "category":"other",
       "centroid":[
         3.5986,
@@ -236,6 +262,7 @@
     },
     "27":{
       "name":"47s",
+      "fullName":"Inferior Frontal Area 47s",
       "category":"other",
       "centroid":[
         1.4825,
@@ -245,6 +272,7 @@
     },
     "28":{
       "name":"52",
+      "fullName":"Parainsular Area 52",
       "category":"other",
       "centroid":[
         -4.2702,
@@ -254,6 +282,7 @@
     },
     "29":{
       "name":"55b",
+      "fullName":"Premotor Area 55b",
       "category":"other",
       "centroid":[
         -8.9821,
@@ -263,6 +292,7 @@
     },
     "30":{
       "name":"5L",
+      "fullName":"Superior Parietal Area 5L",
       "category":"other",
       "centroid":[
         -0.6033,
@@ -272,6 +302,7 @@
     },
     "31":{
       "name":"5m",
+      "fullName":"Medial Superior Parietal Area 5m",
       "category":"other",
       "centroid":[
         0.7509,
@@ -281,6 +312,7 @@
     },
     "32":{
       "name":"5mv",
+      "fullName":"Medial Ventral Parietal Area 5mv",
       "category":"other",
       "centroid":[
         1.1855,
@@ -290,6 +322,7 @@
     },
     "33":{
       "name":"6a",
+      "fullName":"Premotor Area 6a",
       "category":"other",
       "centroid":[
         1.2366,
@@ -299,6 +332,7 @@
     },
     "34":{
       "name":"6d",
+      "fullName":"Dorsal Premotor Area 6d",
       "category":"other",
       "centroid":[
         -0.1846,
@@ -308,6 +342,7 @@
     },
     "35":{
       "name":"6ma",
+      "fullName":"Supplementary Motor Area 6ma",
       "category":"other",
       "centroid":[
         3.0045,
@@ -317,6 +352,7 @@
     },
     "36":{
       "name":"6mp",
+      "fullName":"Pre-Supplementary Motor Area 6mp",
       "category":"other",
       "centroid":[
         1.856,
@@ -326,6 +362,7 @@
     },
     "37":{
       "name":"6r",
+      "fullName":"Rostral Premotor Area 6r",
       "category":"other",
       "centroid":[
         1.4981,
@@ -335,6 +372,7 @@
     },
     "38":{
       "name":"6v",
+      "fullName":"Ventral Premotor Area 6v",
       "category":"other",
       "centroid":[
         12.2087,
@@ -344,6 +382,7 @@
     },
     "39":{
       "name":"7AL",
+      "fullName":"Superior Parietal Area 7AL",
       "category":"other",
       "centroid":[
         -1.6719,
@@ -353,6 +392,7 @@
     },
     "40":{
       "name":"7Am",
+      "fullName":"Medial Superior Parietal Area 7Am",
       "category":"other",
       "centroid":[
         -0.5351,
@@ -362,6 +402,7 @@
     },
     "41":{
       "name":"7PC",
+      "fullName":"Postcentral Area 7PC",
       "category":"other",
       "centroid":[
         1.5374,
@@ -371,6 +412,7 @@
     },
     "42":{
       "name":"7PL",
+      "fullName":"Lateral Superior Parietal Area 7PL",
       "category":"other",
       "centroid":[
         -1.3144,
@@ -380,6 +422,7 @@
     },
     "43":{
       "name":"7Pm",
+      "fullName":"Medial Superior Parietal Area 7Pm",
       "category":"other",
       "centroid":[
         -0.5419,
@@ -389,6 +432,7 @@
     },
     "44":{
       "name":"7m",
+      "fullName":"Medial Area 7m (Precuneus)",
       "category":"other",
       "centroid":[
         0.8009,
@@ -398,6 +442,7 @@
     },
     "45":{
       "name":"8Ad",
+      "fullName":"Frontal Area 8Ad",
       "category":"cognitive_load",
       "centroid":[
         -2.8106,
@@ -407,6 +452,7 @@
     },
     "46":{
       "name":"8Av",
+      "fullName":"Frontal Area 8Av",
       "category":"cognitive_load",
       "centroid":[
         0.5351,
@@ -416,6 +462,7 @@
     },
     "47":{
       "name":"8BL",
+      "fullName":"Frontal Area 8BL",
       "category":"cognitive_load",
       "centroid":[
         2.6078,
@@ -425,6 +472,7 @@
     },
     "48":{
       "name":"8BM",
+      "fullName":"Medial Frontal Area 8BM",
       "category":"other",
       "centroid":[
         0.6515,
@@ -434,6 +482,7 @@
     },
     "49":{
       "name":"8C",
+      "fullName":"Frontal Eye Field Complex (Area 8C)",
       "category":"cognitive_load",
       "centroid":[
         -0.2153,
@@ -443,6 +492,7 @@
     },
     "50":{
       "name":"9-46d",
+      "fullName":"Dorsal Prefrontal Area 9-46d",
       "category":"other",
       "centroid":[
         0.685,
@@ -452,6 +502,7 @@
     },
     "51":{
       "name":"9a",
+      "fullName":"Prefrontal Area 9a",
       "category":"other",
       "centroid":[
         -3.4026,
@@ -461,6 +512,7 @@
     },
     "52":{
       "name":"9m",
+      "fullName":"Medial Prefrontal Area 9",
       "category":"cognitive_load",
       "centroid":[
         1.524,
@@ -470,6 +522,7 @@
     },
     "53":{
       "name":"9p",
+      "fullName":"Posterior Prefrontal Area 9",
       "category":"cognitive_load",
       "centroid":[
         0.1465,
@@ -479,6 +532,7 @@
     },
     "54":{
       "name":"?",
+      "fullName":"Unknown / Unassigned Region",
       "category":"other",
       "centroid":[
         1.0087,
@@ -488,6 +542,7 @@
     },
     "55":{
       "name":"A1",
+      "fullName":"Primary Auditory Cortex",
       "category":"audio_engagement",
       "centroid":[
         -6.2377,
@@ -497,6 +552,7 @@
     },
     "56":{
       "name":"A4",
+      "fullName":"Auditory Association Area 4",
       "category":"audio_engagement",
       "centroid":[
         -2.67,
@@ -506,6 +562,7 @@
     },
     "57":{
       "name":"A5",
+      "fullName":"Auditory Association Area 5",
       "category":"audio_engagement",
       "centroid":[
         7.169,
@@ -515,6 +572,7 @@
     },
     "58":{
       "name":"AAIC",
+      "fullName":"Anterior Agranular Insular Complex",
       "category":"other",
       "centroid":[
         -1.2121,
@@ -524,6 +582,7 @@
     },
     "59":{
       "name":"AIP",
+      "fullName":"Anterior Intraparietal Area",
       "category":"other",
       "centroid":[
         0.9462,
@@ -533,6 +592,7 @@
     },
     "60":{
       "name":"AVI",
+      "fullName":"Anterior Ventral Insular Area",
       "category":"other",
       "centroid":[
         0.5335,
@@ -542,6 +602,7 @@
     },
     "61":{
       "name":"DVT",
+      "fullName":"Dorsal Transitional Visual Area",
       "category":"other",
       "centroid":[
         1.6873,
@@ -551,6 +612,7 @@
     },
     "62":{
       "name":"EC",
+      "fullName":"Entorhinal Cortex",
       "category":"memorability",
       "centroid":[
         -1.6049,
@@ -560,6 +622,7 @@
     },
     "63":{
       "name":"FEF",
+      "fullName":"Frontal Eye Fields",
       "category":"cognitive_load",
       "centroid":[
         0.2028,
@@ -569,6 +632,7 @@
     },
     "64":{
       "name":"FFC",
+      "fullName":"Fusiform Face Complex",
       "category":"visual_attention",
       "centroid":[
         3.7228,
@@ -578,6 +642,7 @@
     },
     "65":{
       "name":"FOP1",
+      "fullName":"Frontal Opercular Area 1",
       "category":"other",
       "centroid":[
         5.9227,
@@ -587,6 +652,7 @@
     },
     "66":{
       "name":"FOP2",
+      "fullName":"Frontal Opercular Area 2",
       "category":"other",
       "centroid":[
         2.2727,
@@ -596,6 +662,7 @@
     },
     "67":{
       "name":"FOP3",
+      "fullName":"Frontal Opercular Area 3",
       "category":"other",
       "centroid":[
         -0.4315,
@@ -605,6 +672,7 @@
     },
     "68":{
       "name":"FOP4",
+      "fullName":"Frontal Opercular Area 4",
       "category":"other",
       "centroid":[
         -7.2355,
@@ -614,6 +682,7 @@
     },
     "69":{
       "name":"FOP5",
+      "fullName":"Frontal Opercular Area 5",
       "category":"other",
       "centroid":[
         1.3027,
@@ -623,6 +692,7 @@
     },
     "70":{
       "name":"FST",
+      "fullName":"Fundus of Superior Temporal Sulcus",
       "category":"visual_attention",
       "centroid":[
         -10.4943,
@@ -632,6 +702,7 @@
     },
     "71":{
       "name":"H",
+      "fullName":"Hippocampus",
       "category":"memorability",
       "centroid":[
         -6.034,
@@ -641,6 +712,7 @@
     },
     "72":{
       "name":"IFJa",
+      "fullName":"Inferior Frontal Junction Area (Anterior)",
       "category":"other",
       "centroid":[
         -3.7826,
@@ -650,6 +722,7 @@
     },
     "73":{
       "name":"IFJp",
+      "fullName":"Inferior Frontal Junction Area (Posterior)",
       "category":"other",
       "centroid":[
         -8.2775,
@@ -659,6 +732,7 @@
     },
     "74":{
       "name":"IFSa",
+      "fullName":"Inferior Frontal Sulcus (Anterior)",
       "category":"other",
       "centroid":[
         2.8037,
@@ -668,6 +742,7 @@
     },
     "75":{
       "name":"IFSp",
+      "fullName":"Inferior Frontal Sulcus (Posterior)",
       "category":"other",
       "centroid":[
         8.3141,
@@ -677,6 +752,7 @@
     },
     "76":{
       "name":"IP0",
+      "fullName":"Intraparietal Area 0",
       "category":"other",
       "centroid":[
         1.6957,
@@ -686,6 +762,7 @@
     },
     "77":{
       "name":"IP1",
+      "fullName":"Intraparietal Area 1",
       "category":"other",
       "centroid":[
         5.71,
@@ -695,6 +772,7 @@
     },
     "78":{
       "name":"IP2",
+      "fullName":"Intraparietal Area 2",
       "category":"other",
       "centroid":[
         0.4587,
@@ -704,6 +782,7 @@
     },
     "79":{
       "name":"IPS1",
+      "fullName":"Intraparietal Sulcus Area 1",
       "category":"cognitive_load",
       "centroid":[
         -1.8729,
@@ -713,6 +792,7 @@
     },
     "80":{
       "name":"Ig",
+      "fullName":"Insular Granular Cortex",
       "category":"emotional_response",
       "centroid":[
         -3.6562,
@@ -722,6 +802,7 @@
     },
     "81":{
       "name":"LBelt",
+      "fullName":"Lateral Belt of Auditory Cortex",
       "category":"audio_engagement",
       "centroid":[
         -7.2803,
@@ -731,6 +812,7 @@
     },
     "82":{
       "name":"LIPd",
+      "fullName":"Lateral Intraparietal (Dorsal)",
       "category":"other",
       "centroid":[
         -2.3199,
@@ -740,6 +822,7 @@
     },
     "83":{
       "name":"LIPv",
+      "fullName":"Lateral Intraparietal (Ventral)",
       "category":"other",
       "centroid":[
         -2.6721,
@@ -749,6 +832,7 @@
     },
     "84":{
       "name":"LO1",
+      "fullName":"Lateral Occipital Area 1",
       "category":"other",
       "centroid":[
         -1.774,
@@ -758,6 +842,7 @@
     },
     "85":{
       "name":"LO2",
+      "fullName":"Lateral Occipital Area 2",
       "category":"other",
       "centroid":[
         -11.9662,
@@ -767,6 +852,7 @@
     },
     "86":{
       "name":"LO3",
+      "fullName":"Lateral Occipital Area 3",
       "category":"other",
       "centroid":[
         -4.5551,
@@ -776,6 +862,7 @@
     },
     "87":{
       "name":"MBelt",
+      "fullName":"Medial Belt of Auditory Cortex",
       "category":"audio_engagement",
       "centroid":[
         -3.2695,
@@ -785,6 +872,7 @@
     },
     "88":{
       "name":"MI",
+      "fullName":"Middle Insular Area",
       "category":"other",
       "centroid":[
         -2.8967,
@@ -794,6 +882,7 @@
     },
     "89":{
       "name":"MIP",
+      "fullName":"Medial Intraparietal Area",
       "category":"other",
       "centroid":[
         0.5999,
@@ -803,6 +892,7 @@
     },
     "90":{
       "name":"MST",
+      "fullName":"Medial Superior Temporal Area",
       "category":"visual_attention",
       "centroid":[
         -0.4452,
@@ -812,6 +902,7 @@
     },
     "91":{
       "name":"MT",
+      "fullName":"Middle Temporal Visual Area (V5)",
       "category":"visual_attention",
       "centroid":[
         5.7082,
@@ -821,6 +912,7 @@
     },
     "92":{
       "name":"OFC",
+      "fullName":"Orbitofrontal Cortex",
       "category":"emotional_response",
       "centroid":[
         0.3927,
@@ -830,6 +922,7 @@
     },
     "93":{
       "name":"OP1",
+      "fullName":"Parietal Opercular Area 1",
       "category":"other",
       "centroid":[
         -13.2938,
@@ -839,6 +932,7 @@
     },
     "94":{
       "name":"OP2-3",
+      "fullName":"Parietal Opercular Area 2-3",
       "category":"other",
       "centroid":[
         -3.8651,
@@ -848,6 +942,7 @@
     },
     "95":{
       "name":"OP4",
+      "fullName":"Parietal Opercular Area 4",
       "category":"other",
       "centroid":[
         7.6756,
@@ -857,6 +952,7 @@
     },
     "96":{
       "name":"PBelt",
+      "fullName":"Parabelt of Auditory Cortex",
       "category":"audio_engagement",
       "centroid":[
         -6.3795,
@@ -866,6 +962,7 @@
     },
     "97":{
       "name":"PCV",
+      "fullName":"Precuneus Visual Area",
       "category":"other",
       "centroid":[
         0.3261,
@@ -875,6 +972,7 @@
     },
     "98":{
       "name":"PEF",
+      "fullName":"Premotor Eye Field",
       "category":"other",
       "centroid":[
         6.146,
@@ -884,6 +982,7 @@
     },
     "99":{
       "name":"PF",
+      "fullName":"Inferior Parietal Area PF",
       "category":"other",
       "centroid":[
         -7.4505,
@@ -893,6 +992,7 @@
     },
     "100":{
       "name":"PFcm",
+      "fullName":"Inferior Parietal Area PFcm",
       "category":"other",
       "centroid":[
         -0.805,
@@ -902,6 +1002,7 @@
     },
     "101":{
       "name":"PFm",
+      "fullName":"Inferior Parietal Area PFm",
       "category":"other",
       "centroid":[
         1.0482,
@@ -911,6 +1012,7 @@
     },
     "102":{
       "name":"PFop",
+      "fullName":"Inferior Parietal Area PFop",
       "category":"other",
       "centroid":[
         -3.242,
@@ -920,6 +1022,7 @@
     },
     "103":{
       "name":"PFt",
+      "fullName":"Inferior Parietal Area PFt",
       "category":"other",
       "centroid":[
         -3.9929,
@@ -929,6 +1032,7 @@
     },
     "104":{
       "name":"PGi",
+      "fullName":"Inferior Parietal Area PGi",
       "category":"other",
       "centroid":[
         4.4513,
@@ -938,6 +1042,7 @@
     },
     "105":{
       "name":"PGp",
+      "fullName":"Posterior Parietal Area PGp",
       "category":"other",
       "centroid":[
         3.3238,
@@ -947,6 +1052,7 @@
     },
     "106":{
       "name":"PGs",
+      "fullName":"Superior Parietal Area PGs",
       "category":"other",
       "centroid":[
         0.9141,
@@ -956,6 +1062,7 @@
     },
     "107":{
       "name":"PH",
+      "fullName":"Parahippocampal Area",
       "category":"other",
       "centroid":[
         -3.5853,
@@ -965,6 +1072,7 @@
     },
     "108":{
       "name":"PHA1",
+      "fullName":"Parahippocampal Area 1",
       "category":"memorability",
       "centroid":[
         -1.4501,
@@ -974,6 +1082,7 @@
     },
     "109":{
       "name":"PHA2",
+      "fullName":"Parahippocampal Area 2",
       "category":"memorability",
       "centroid":[
         0.7278,
@@ -983,6 +1092,7 @@
     },
     "110":{
       "name":"PHA3",
+      "fullName":"Parahippocampal Area 3",
       "category":"memorability",
       "centroid":[
         -5.6715,
@@ -992,6 +1102,7 @@
     },
     "111":{
       "name":"PHT",
+      "fullName":"Parahippocampal Transition Area",
       "category":"other",
       "centroid":[
         -5.398,
@@ -1001,6 +1112,7 @@
     },
     "112":{
       "name":"PI",
+      "fullName":"Para-Insular Area",
       "category":"other",
       "centroid":[
         3.9143,
@@ -1010,6 +1122,7 @@
     },
     "113":{
       "name":"PIT",
+      "fullName":"Posterior Inferotemporal Area",
       "category":"visual_attention",
       "centroid":[
         4.5859,
@@ -1019,6 +1132,7 @@
     },
     "114":{
       "name":"POS1",
+      "fullName":"Parieto-Occipital Sulcus Area 1",
       "category":"memorability",
       "centroid":[
         -0.7002,
@@ -1028,6 +1142,7 @@
     },
     "115":{
       "name":"POS2",
+      "fullName":"Parieto-Occipital Sulcus Area 2",
       "category":"memorability",
       "centroid":[
         1.1487,
@@ -1037,6 +1152,7 @@
     },
     "116":{
       "name":"PSL",
+      "fullName":"Perisylvian Language Area",
       "category":"language_processing",
       "centroid":[
         2.792,
@@ -1046,6 +1162,7 @@
     },
     "117":{
       "name":"PeEc",
+      "fullName":"Perirhinal Ectorhinal Cortex",
       "category":"memorability",
       "centroid":[
         -3.5468,
@@ -1055,6 +1172,7 @@
     },
     "118":{
       "name":"Pir",
+      "fullName":"Piriform Cortex",
       "category":"other",
       "centroid":[
         8.7582,
@@ -1064,6 +1182,7 @@
     },
     "119":{
       "name":"PoI1",
+      "fullName":"Posterior Insular Area 1",
       "category":"other",
       "centroid":[
         1.1015,
@@ -1073,6 +1192,7 @@
     },
     "120":{
       "name":"PoI2",
+      "fullName":"Posterior Insular Area 2",
       "category":"other",
       "centroid":[
         0.7114,
@@ -1082,6 +1202,7 @@
     },
     "121":{
       "name":"PreS",
+      "fullName":"Presubiculum",
       "category":"memorability",
       "centroid":[
         -1.5115,
@@ -1091,6 +1212,7 @@
     },
     "122":{
       "name":"ProS",
+      "fullName":"Prostriate Area",
       "category":"other",
       "centroid":[
         -1.5594,
@@ -1100,6 +1222,7 @@
     },
     "123":{
       "name":"RI",
+      "fullName":"Retroinsular Cortex",
       "category":"audio_engagement",
       "centroid":[
         0.0387,
@@ -1109,6 +1232,7 @@
     },
     "124":{
       "name":"RSC",
+      "fullName":"Retrosplenial Complex",
       "category":"memorability",
       "centroid":[
         -0.1953,
@@ -1118,6 +1242,7 @@
     },
     "125":{
       "name":"SCEF",
+      "fullName":"Supplementary and Cingulate Eye Field",
       "category":"other",
       "centroid":[
         -0.9085,
@@ -1127,6 +1252,7 @@
     },
     "126":{
       "name":"SFL",
+      "fullName":"Superior Frontal Language Area",
       "category":"language_processing",
       "centroid":[
         -1.6204,
@@ -1136,6 +1262,7 @@
     },
     "127":{
       "name":"STGa",
+      "fullName":"Anterior Superior Temporal Gyrus",
       "category":"audio_engagement",
       "centroid":[
         3.0502,
@@ -1145,6 +1272,7 @@
     },
     "128":{
       "name":"STSda",
+      "fullName":"Superior Temporal Sulcus (Dorsal Anterior)",
       "category":"language_processing",
       "centroid":[
         6.6848,
@@ -1154,6 +1282,7 @@
     },
     "129":{
       "name":"STSdp",
+      "fullName":"Superior Temporal Sulcus (Dorsal Posterior)",
       "category":"language_processing",
       "centroid":[
         2.6764,
@@ -1163,6 +1292,7 @@
     },
     "130":{
       "name":"STSva",
+      "fullName":"Superior Temporal Sulcus (Ventral Anterior)",
       "category":"language_processing",
       "centroid":[
         -6.0338,
@@ -1172,6 +1302,7 @@
     },
     "131":{
       "name":"STSvp",
+      "fullName":"Superior Temporal Sulcus (Ventral Posterior)",
       "category":"language_processing",
       "centroid":[
         -7.0384,
@@ -1181,6 +1312,7 @@
     },
     "132":{
       "name":"STV",
+      "fullName":"Superior Temporal Visual Area",
       "category":"language_processing",
       "centroid":[
         5.0488,
@@ -1190,6 +1322,7 @@
     },
     "133":{
       "name":"TA2",
+      "fullName":"Temporal Area 2 (Auditory)",
       "category":"audio_engagement",
       "centroid":[
         7.1608,
@@ -1199,6 +1332,7 @@
     },
     "134":{
       "name":"TE1a",
+      "fullName":"Temporal Area TE1a",
       "category":"other",
       "centroid":[
         -2.407,
@@ -1208,6 +1342,7 @@
     },
     "135":{
       "name":"TE1m",
+      "fullName":"Temporal Area TE1m",
       "category":"other",
       "centroid":[
         0.4777,
@@ -1217,6 +1352,7 @@
     },
     "136":{
       "name":"TE1p",
+      "fullName":"Temporal Area TE1p",
       "category":"other",
       "centroid":[
         -0.2045,
@@ -1226,6 +1362,7 @@
     },
     "137":{
       "name":"TE2a",
+      "fullName":"Temporal Area TE2a",
       "category":"other",
       "centroid":[
         2.7818,
@@ -1235,6 +1372,7 @@
     },
     "138":{
       "name":"TE2p",
+      "fullName":"Temporal Area TE2p",
       "category":"other",
       "centroid":[
         -0.8752,
@@ -1244,6 +1382,7 @@
     },
     "139":{
       "name":"TF",
+      "fullName":"Temporal Fusiform Area TF",
       "category":"other",
       "centroid":[
         1.5322,
@@ -1253,6 +1392,7 @@
     },
     "140":{
       "name":"TGd",
+      "fullName":"Temporal Polar (Dorsal)",
       "category":"other",
       "centroid":[
         1.3099,
@@ -1262,6 +1402,7 @@
     },
     "141":{
       "name":"TGv",
+      "fullName":"Temporal Polar (Ventral)",
       "category":"other",
       "centroid":[
         0.9783,
@@ -1271,6 +1412,7 @@
     },
     "142":{
       "name":"TPOJ1",
+      "fullName":"Temporo-Parieto-Occipital Junction 1",
       "category":"language_processing",
       "centroid":[
         17.2763,
@@ -1280,6 +1422,7 @@
     },
     "143":{
       "name":"TPOJ2",
+      "fullName":"Temporo-Parieto-Occipital Junction 2",
       "category":"language_processing",
       "centroid":[
         12.8609,
@@ -1289,6 +1432,7 @@
     },
     "144":{
       "name":"TPOJ3",
+      "fullName":"Temporo-Parieto-Occipital Junction 3",
       "category":"language_processing",
       "centroid":[
         7.4182,
@@ -1298,6 +1442,7 @@
     },
     "145":{
       "name":"V1",
+      "fullName":"Primary Visual Cortex",
       "category":"visual_attention",
       "centroid":[
         0.6631,
@@ -1307,6 +1452,7 @@
     },
     "146":{
       "name":"V2",
+      "fullName":"Secondary Visual Cortex",
       "category":"visual_attention",
       "centroid":[
         0.7177,
@@ -1316,6 +1462,7 @@
     },
     "147":{
       "name":"V3",
+      "fullName":"Third Visual Area",
       "category":"visual_attention",
       "centroid":[
         1.1326,
@@ -1325,6 +1472,7 @@
     },
     "148":{
       "name":"V3A",
+      "fullName":"Visual Area V3A",
       "category":"visual_attention",
       "centroid":[
         1.5036,
@@ -1334,6 +1482,7 @@
     },
     "149":{
       "name":"V3B",
+      "fullName":"Visual Area V3B",
       "category":"visual_attention",
       "centroid":[
         1.8266,
@@ -1343,6 +1492,7 @@
     },
     "150":{
       "name":"V3CD",
+      "fullName":"Dorsal V3 Complex",
       "category":"other",
       "centroid":[
         -0.6385,
@@ -1352,6 +1502,7 @@
     },
     "151":{
       "name":"V4",
+      "fullName":"Fourth Visual Area",
       "category":"visual_attention",
       "centroid":[
         -1.8891,
@@ -1361,6 +1512,7 @@
     },
     "152":{
       "name":"V4t",
+      "fullName":"Visual Area V4 (Transitional)",
       "category":"other",
       "centroid":[
         -3.9629,
@@ -1370,6 +1522,7 @@
     },
     "153":{
       "name":"V6",
+      "fullName":"Sixth Visual Area",
       "category":"visual_attention",
       "centroid":[
         1.7658,
@@ -1379,6 +1532,7 @@
     },
     "154":{
       "name":"V6A",
+      "fullName":"Visual Area V6A",
       "category":"visual_attention",
       "centroid":[
         -0.1004,
@@ -1388,6 +1542,7 @@
     },
     "155":{
       "name":"V7",
+      "fullName":"Seventh Visual Area",
       "category":"visual_attention",
       "centroid":[
         1.3079,
@@ -1397,6 +1552,7 @@
     },
     "156":{
       "name":"V8",
+      "fullName":"Eighth Visual Area (VO1)",
       "category":"visual_attention",
       "centroid":[
         1.5305,
@@ -1406,6 +1562,7 @@
     },
     "157":{
       "name":"VIP",
+      "fullName":"Ventral Intraparietal Area",
       "category":"other",
       "centroid":[
         -2.6476,
@@ -1415,6 +1572,7 @@
     },
     "158":{
       "name":"VMV1",
+      "fullName":"Ventromedial Visual Area 1",
       "category":"visual_attention",
       "centroid":[
         -0.3658,
@@ -1424,6 +1582,7 @@
     },
     "159":{
       "name":"VMV2",
+      "fullName":"Ventromedial Visual Area 2",
       "category":"visual_attention",
       "centroid":[
         -0.5756,
@@ -1433,6 +1592,7 @@
     },
     "160":{
       "name":"VMV3",
+      "fullName":"Ventromedial Visual Area 3",
       "category":"visual_attention",
       "centroid":[
         1.3266,
@@ -1442,6 +1602,7 @@
     },
     "161":{
       "name":"VVC",
+      "fullName":"Ventral Visual Complex",
       "category":"visual_attention",
       "centroid":[
         -2.6538,
@@ -1451,6 +1612,7 @@
     },
     "162":{
       "name":"a10p",
+      "fullName":"Anterior Polar Area 10p",
       "category":"other",
       "centroid":[
         -0.2603,
@@ -1460,6 +1622,7 @@
     },
     "163":{
       "name":"a24",
+      "fullName":"Anterior Cingulate Area 24",
       "category":"emotional_response",
       "centroid":[
         0.2231,
@@ -1469,6 +1632,7 @@
     },
     "164":{
       "name":"a24pr",
+      "fullName":"Anterior Cingulate Area 24pr",
       "category":"other",
       "centroid":[
         -0.5152,
@@ -1478,6 +1642,7 @@
     },
     "165":{
       "name":"a32pr",
+      "fullName":"Anterior Cingulate Area 32pr",
       "category":"other",
       "centroid":[
         0.9263,
@@ -1487,6 +1652,7 @@
     },
     "166":{
       "name":"a47r",
+      "fullName":"Anterior Inferior Frontal Area 47r",
       "category":"other",
       "centroid":[
         -1.6069,
@@ -1496,6 +1662,7 @@
     },
     "167":{
       "name":"a9-46v",
+      "fullName":"Anterior Prefrontal Area a9-46v",
       "category":"other",
       "centroid":[
         -4.7519,
@@ -1505,6 +1672,7 @@
     },
     "168":{
       "name":"d23ab",
+      "fullName":"Dorsal Area 23a/b",
       "category":"other",
       "centroid":[
         -0.2997,
@@ -1514,6 +1682,7 @@
     },
     "169":{
       "name":"d32",
+      "fullName":"Dorsal Cingulate Area 32",
       "category":"other",
       "centroid":[
         1.7273,
@@ -1523,6 +1692,7 @@
     },
     "170":{
       "name":"i6-8",
+      "fullName":"Inferior Frontal Area 6-8",
       "category":"cognitive_load",
       "centroid":[
         -0.5277,
@@ -1532,6 +1702,7 @@
     },
     "171":{
       "name":"p10p",
+      "fullName":"Posterior Polar Area 10p",
       "category":"other",
       "centroid":[
         2.9574,
@@ -1541,6 +1712,7 @@
     },
     "172":{
       "name":"p24",
+      "fullName":"Posterior Area 24",
       "category":"other",
       "centroid":[
         0.5331,
@@ -1550,6 +1722,7 @@
     },
     "173":{
       "name":"p24pr",
+      "fullName":"Posterior Cingulate Area 24pr",
       "category":"other",
       "centroid":[
         1.4658,
@@ -1559,6 +1732,7 @@
     },
     "174":{
       "name":"p32",
+      "fullName":"Posterior Cingulate Area 32",
       "category":"emotional_response",
       "centroid":[
         0.4262,
@@ -1568,6 +1742,7 @@
     },
     "175":{
       "name":"p32pr",
+      "fullName":"Posterior Area 32pr",
       "category":"other",
       "centroid":[
         0.2252,
@@ -1577,6 +1752,7 @@
     },
     "176":{
       "name":"p47r",
+      "fullName":"Posterior Inferior Frontal Area 47r",
       "category":"other",
       "centroid":[
         -2.2803,
@@ -1586,6 +1762,7 @@
     },
     "177":{
       "name":"p9-46v",
+      "fullName":"Prefrontal Area p9-46v",
       "category":"cognitive_load",
       "centroid":[
         5.097,
@@ -1595,6 +1772,7 @@
     },
     "178":{
       "name":"pOFC",
+      "fullName":"Posterior Orbitofrontal Cortex",
       "category":"emotional_response",
       "centroid":[
         2.7592,
@@ -1604,6 +1782,7 @@
     },
     "179":{
       "name":"s32",
+      "fullName":"Subgenual Cingulate Area 32",
       "category":"emotional_response",
       "centroid":[
         -0.2222,
@@ -1613,6 +1792,7 @@
     },
     "180":{
       "name":"s6-8",
+      "fullName":"Superior Frontal Area 6-8",
       "category":"cognitive_load",
       "centroid":[
         4.6037,
@@ -1622,6 +1802,7 @@
     },
     "181":{
       "name":"v23ab",
+      "fullName":"Ventral Area 23a/b",
       "category":"other",
       "centroid":[
         0.2736,
