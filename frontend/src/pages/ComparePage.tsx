@@ -161,7 +161,7 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
   if (isComplete) {
     return (
       <div
-        className="relative glass-panel hud-bracket"
+        className="relative glass-panel hud-corners"
         style={{
           padding: "1rem 1.25rem",
           display: "flex",
@@ -225,7 +225,7 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
         onKeyDown={handleKeyDown}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="relative glass-panel scan-lines hud-bracket"
+        className="relative glass-panel hud-corners"
         style={{
           padding: "2rem 1.5rem",
           textAlign: "center",
@@ -308,7 +308,7 @@ function DeltaMetricCard({ metric }: DeltaMetricCardProps) {
 
   return (
     <div
-      className="relative glass-panel hud-bracket"
+      className="relative glass-panel hud-corners"
       style={{ padding: "0.875rem 1rem" }}
     >
       <p
@@ -400,6 +400,11 @@ export function ComparePage() {
       className="grain relative min-h-screen flex flex-col gap-4 p-4 overflow-hidden"
       style={{ background: "var(--color-void)" }}
     >
+      {/* Minority Report grid + glows */}
+      <div className="mr-grid" />
+      <div className="mr-glow" style={{ top: "15%", left: "20%", width: 500, height: 500, background: "rgba(0, 229, 255, 0.05)" }} />
+      <div className="mr-glow" style={{ top: "55%", right: "15%", width: 400, height: 400, background: "rgba(124, 77, 255, 0.04)" }} />
+
       {/* Twinkling stars */}
       {STAR_CONFIGS.map((s, i) => (
         <div
@@ -493,7 +498,7 @@ export function ComparePage() {
           <>
             <div className="grid grid-cols-2 gap-4 fade-in" style={{ height: "50vh" }}>
               {/* Brain A */}
-              <div className="relative glass-panel scan-lines overflow-hidden" style={{ borderRadius: 16 }}>
+              <div className="relative glass-panel overflow-hidden" style={{ borderRadius: 16 }}>
                 <span
                   className="absolute top-3 left-3 z-10 glass-panel data-readout"
                   style={{
@@ -512,7 +517,7 @@ export function ComparePage() {
               </div>
 
               {/* Brain B */}
-              <div className="relative glass-panel scan-lines overflow-hidden" style={{ borderRadius: 16 }}>
+              <div className="relative glass-panel overflow-hidden" style={{ borderRadius: 16 }}>
                 <span
                   className="absolute top-3 left-3 z-10 glass-panel data-readout"
                   style={{
@@ -534,7 +539,7 @@ export function ComparePage() {
             </div>
 
             {/* Delta metrics panel */}
-            <div className="relative glass-panel scan-lines fade-in fade-in-delay-1" style={{ padding: "1.25rem" }}>
+            <div className="relative glass-panel fade-in fade-in-delay-1" style={{ padding: "1.25rem" }}>
               <h2
                 className="hud-header data-readout"
                 style={{
@@ -558,7 +563,7 @@ export function ComparePage() {
 
             {/* Shared timeline */}
             <div
-              className="relative glass-panel scan-lines fade-in fade-in-delay-2"
+              className="relative glass-panel fade-in fade-in-delay-2"
               style={{ height: "3.5rem", borderRadius: 16 }}
             >
               <Timeline

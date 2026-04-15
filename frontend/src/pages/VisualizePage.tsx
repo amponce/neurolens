@@ -69,7 +69,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
   return (
     <div
-      className="grain fade-in"
+      className="grain fade-in relative"
       style={{
         background: "var(--color-void)",
         display: "grid",
@@ -81,9 +81,13 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
         padding: 8,
       }}
     >
+      {/* Minority Report background grid */}
+      <div className="mr-grid" />
+      <div className="mr-glow" style={{ top: "30%", left: "20%", width: 400, height: 400, background: "rgba(0, 229, 255, 0.04)" }} />
+      <div className="mr-glow" style={{ top: "60%", right: "10%", width: 300, height: 300, background: "rgba(124, 77, 255, 0.03)" }} />
       {/* Header bar — spans full width */}
       <div
-        className="relative glass-panel scan-lines fade-in"
+        className="relative glass-panel fade-in"
         style={{
           gridColumn: "1 / 3",
           gridRow: "1",
@@ -150,7 +154,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Brain viewer */}
       <div
-        className="relative glass-panel scan-lines fade-in fade-in-delay-1"
+        className="relative glass-panel fade-in fade-in-delay-1"
         style={{ gridColumn: "1", gridRow: "2", overflow: "hidden", borderRadius: 16 }}
       >
         <GlassBrain activations={activations} frame={currentFrame} />
@@ -158,7 +162,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Right sidebar — spans rows 2 and 3 */}
       <div
-        className="relative glass-panel scan-lines fade-in fade-in-delay-2"
+        className="relative glass-panel fade-in fade-in-delay-2"
         style={{ gridColumn: "2", gridRow: "2 / 4", overflow: "hidden", borderRadius: 16 }}
       >
         <MetricsPanel result={result} frameIndex={frameIndex} />
@@ -166,7 +170,7 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
 
       {/* Timeline */}
       <div
-        className="relative glass-panel scan-lines fade-in fade-in-delay-3"
+        className="relative glass-panel fade-in fade-in-delay-3"
         style={{ gridColumn: "1", gridRow: "3", borderRadius: 16 }}
       >
         <Timeline

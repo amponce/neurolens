@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-void: #0a0e1a;
-  --color-surface: #111827;
-  --color-surface-light: #1a2332;
-  --color-border: #1e293b;
-  --color-border-glow: #00e5ff20;
+  --color-void: #060a14;
+  --color-surface: #0c1220;
+  --color-surface-light: #121e30;
+  --color-border: #1a2a44;
+  --color-border-glow: rgba(0, 229, 255, 0.25);
   --color-cyan: #00e5ff;
-  --color-cyan-dim: #00e5ff80;
+  --color-cyan-dim: rgba(0, 229, 255, 0.5);
   --color-amber: #ffab40;
   --color-violet: #7c4dff;
   --color-text: #e2e8f0;
@@ -17,13 +17,8 @@
   --font-body: "Plus Jakarta Sans", sans-serif;
 }
 
-* {
-  font-family: var(--font-body);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-}
+* { font-family: var(--font-body); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 
 body {
   background-color: var(--color-void);
@@ -31,121 +26,74 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Film grain overlay */
-.grain::after {
+/* ═══════════════════════════════════════════════
+   MINORITY REPORT GLASS PANELS
+   Real visible glassmorphism with bright backing
+   ═══════════════════════════════════════════════ */
+
+.glass-panel {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 20, 40, 0.85) 0%,
+    rgba(10, 30, 60, 0.7) 50%,
+    rgba(6, 20, 40, 0.85) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 12px;
+  box-shadow:
+    0 0 1px rgba(0, 229, 255, 0.3),
+    0 0 20px rgba(0, 229, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Scan-line overlay — visible holographic lines */
+.glass-panel::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 229, 255, 0.025) 3px,
+    rgba(0, 229, 255, 0.025) 4px
+  );
+  border-radius: inherit;
+  z-index: 2;
 }
 
-/* Glow effect for cards */
-.glow-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+/* Glowing edge highlight on top */
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
+  z-index: 3;
 }
 
-.glow-card:hover {
-  border-color: var(--color-border-glow);
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.05), inset 0 0 30px rgba(0, 229, 255, 0.02);
+.glass-panel:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow:
+    0 0 2px rgba(0, 229, 255, 0.5),
+    0 0 30px rgba(0, 229, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Animated gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-cyan), var(--color-violet), var(--color-amber));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 8s ease infinite;
-}
+/* ═══════════════════════════════════════════════
+   HUD ELEMENTS
+   ═══════════════════════════════════════════════ */
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Fade-in animation */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fade-up 0.6s ease-out both;
-}
-
-.fade-in-delay-1 { animation-delay: 0.1s; }
-.fade-in-delay-2 { animation-delay: 0.2s; }
-.fade-in-delay-3 { animation-delay: 0.3s; }
-.fade-in-delay-4 { animation-delay: 0.4s; }
-
-/* Pulse ring animation for upload zone */
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.5; }
-  50% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.5; }
-}
-
-.pulse-border {
-  animation: pulse-ring 2s ease-in-out infinite;
-}
-
-/* Space drift — slow, weightless floating */
-@keyframes space-drift {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-  8% { opacity: 1; }
-  50% { transform: translateY(-50vh) translateX(30px) scale(0.6); opacity: 0.8; }
-  92% { opacity: 0.3; }
-  100% { transform: translateY(-100vh) translateX(-10px) scale(0.2); opacity: 0; }
-}
-
-/* Slow twinkle for stars */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
-
-/* Nebula pulse — slow breathing glow */
-@keyframes nebula-pulse {
-  0%, 100% { opacity: 0.03; transform: scale(1) rotate(0deg); }
-  33% { opacity: 0.06; transform: scale(1.05) rotate(1deg); }
-  66% { opacity: 0.04; transform: scale(0.98) rotate(-1deg); }
-}
-
-/* Orbit — slow circular path */
-@keyframes orbit {
-  0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-  100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
-}
-
-/* Glassmorphism panels */
-.glass-panel {
-  background: rgba(0, 229, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 229, 255, 0.1);
-  border-radius: 16px;
-}
-
-.glass-panel-warm {
-  background: rgba(255, 171, 64, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 171, 64, 0.1);
-  border-radius: 16px;
-}
-
-/* HUD scan-line effect for headers */
+/* Section header with glowing underline */
 .hud-header {
   position: relative;
-  padding-bottom: 12px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .hud-header::after {
@@ -155,78 +103,145 @@ body {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
-  opacity: 0.3;
+  background: linear-gradient(90deg, var(--color-cyan), rgba(0, 229, 255, 0.2) 50%, transparent);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
 }
 
-/* HUD bracket decoration */
-.hud-bracket::before,
-.hud-bracket::after {
+/* Corner bracket decorations */
+.hud-corners {
+  position: relative;
+}
+.hud-corners::before,
+.hud-corners::after {
   content: "";
   position: absolute;
-  width: 8px;
-  height: 8px;
-  border-color: var(--color-cyan);
-  opacity: 0.4;
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
 }
-.hud-bracket::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1px solid;
-  border-left: 1px solid;
+.hud-corners::before {
+  top: -1px; left: -1px;
+  border-top: 1px solid var(--color-cyan);
+  border-left: 1px solid var(--color-cyan);
 }
-.hud-bracket::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 1px solid;
-  border-right: 1px solid;
+.hud-corners::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 1px solid var(--color-cyan);
+  border-right: 1px solid var(--color-cyan);
 }
 
-/* Holographic shimmer */
-@keyframes holo-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* Data readout monospace feel */
+.data-readout {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
 }
 
-.holo-border {
-  border-image: linear-gradient(90deg, transparent, var(--color-cyan), var(--color-violet), transparent) 1;
-  animation: holo-shimmer 4s linear infinite;
-  background-size: 200% 100%;
-}
+/* ═══════════════════════════════════════════════
+   BACKGROUND EFFECTS
+   ═══════════════════════════════════════════════ */
 
-/* Scan line overlay for panels */
-.scan-lines::before {
-  content: "";
-  position: absolute;
+/* Grid pattern — Minority Report floor grid */
+.mr-grid {
+  position: fixed;
   inset: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 229, 255, 0.015) 2px,
-    rgba(0, 229, 255, 0.015) 4px
-  );
-  border-radius: inherit;
-  z-index: 1;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 100%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 100%, black 0%, transparent 70%);
+  z-index: 0;
 }
 
-/* Data readout style text */
-.data-readout {
-  font-family: var(--font-body);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+/* Ambient glow spots */
+.mr-glow {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
 }
 
-/* Score bar high-value pulse glow */
-@keyframes score-pulse {
-  0%, 100% { box-shadow: 0 0 6px var(--bar-color, var(--color-cyan)); }
-  50% { box-shadow: 0 0 14px var(--bar-color, var(--color-cyan)), 0 0 24px rgba(0,229,255,0.2); }
+/* Film grain */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED GRADIENT TEXT
+   ═══════════════════════════════════════════════ */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-violet) 50%, var(--color-amber));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fade-up 0.5s ease-out both; }
+.fade-in-delay-1 { animation-delay: 0.1s; }
+.fade-in-delay-2 { animation-delay: 0.2s; }
+.fade-in-delay-3 { animation-delay: 0.3s; }
+.fade-in-delay-4 { animation-delay: 0.4s; }
+
+/* Space particle drift */
+@keyframes space-drift {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  8% { opacity: 1; }
+  50% { transform: translateY(-50vh) translateX(30px) scale(0.6); opacity: 0.8; }
+  92% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(-10px) scale(0.2); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.4); }
+}
+
+@keyframes nebula-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.pulse-border { animation: pulse-ring 2s ease-in-out infinite; }
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
 }
 
 /* Score bar glow */
 .score-track {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.08);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -236,4 +251,9 @@ body {
   border-radius: 999px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 8px var(--bar-color, var(--color-cyan));
+}
+
+@keyframes score-pulse {
+  0%, 100% { box-shadow: 0 0 6px var(--bar-color, var(--color-cyan)); }
+  50% { box-shadow: 0 0 14px var(--bar-color, var(--color-cyan)), 0 0 24px rgba(0,229,255,0.15); }
 }

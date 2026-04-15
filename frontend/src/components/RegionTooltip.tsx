@@ -27,7 +27,7 @@ export function RegionTooltip({ name, category, value }: RegionTooltipProps) {
 
   return (
     <div
-      className="glass-panel scan-lines hud-bracket absolute top-4 left-4 pointer-events-none"
+      className="glass-panel hud-corners absolute top-4 left-4 pointer-events-none"
       style={{
         padding: "0.75rem 1rem",
         borderRadius: 12,

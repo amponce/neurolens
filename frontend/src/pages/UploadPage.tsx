@@ -205,7 +205,14 @@ export function UploadPage() {
       className="grain relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
       style={{ background: "var(--color-void)" }}
     >
-      {/* Ambient floating particles */}
+      {/* Minority Report grid floor */}
+      <div className="mr-grid" />
+
+      {/* Ambient glow spots — gives depth for glass to blur against */}
+      <div className="mr-glow" style={{ top: "20%", left: "25%", width: 500, height: 500, background: "rgba(0, 229, 255, 0.06)" }} />
+      <div className="mr-glow" style={{ top: "50%", right: "15%", width: 400, height: 400, background: "rgba(124, 77, 255, 0.05)" }} />
+      <div className="mr-glow" style={{ bottom: "10%", left: "40%", width: 600, height: 300, background: "rgba(0, 229, 255, 0.04)" }} />
+
       {/* Twinkling stars */}
       {STAR_CONFIGS.map((s, i) => (
         <div
@@ -304,16 +311,11 @@ export function UploadPage() {
           }}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          className="fade-in fade-in-delay-2 glow-card"
+          className="fade-in fade-in-delay-2 glass-panel hud-corners"
           style={{
             padding: "3rem 2.5rem",
             textAlign: "center",
             cursor: isActive ? "default" : "pointer",
-            borderStyle: "dashed",
-            borderColor: isActive ? "#00e5ff" : "rgba(0,229,255,0.15)",
-            ...(isActive
-              ? { boxShadow: "0 0 40px rgba(0,229,255,0.08), inset 0 0 40px rgba(0,229,255,0.03)" }
-              : {}),
           }}
         >
           <input
