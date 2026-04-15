@@ -209,9 +209,9 @@ export function UploadPage() {
       <div className="mr-grid" />
 
       {/* Ambient glow spots — gives depth for glass to blur against */}
-      <div className="mr-glow" style={{ top: "20%", left: "25%", width: 500, height: 500, background: "rgba(0, 229, 255, 0.06)" }} />
-      <div className="mr-glow" style={{ top: "50%", right: "15%", width: 400, height: 400, background: "rgba(124, 77, 255, 0.05)" }} />
-      <div className="mr-glow" style={{ bottom: "10%", left: "40%", width: 600, height: 300, background: "rgba(0, 229, 255, 0.04)" }} />
+      <div className="mr-glow" style={{ top: "15%", left: "20%", width: 600, height: 600, background: "rgba(0, 229, 255, 0.12)" }} />
+      <div className="mr-glow" style={{ top: "45%", right: "10%", width: 500, height: 500, background: "rgba(124, 77, 255, 0.10)" }} />
+      <div className="mr-glow" style={{ bottom: "5%", left: "35%", width: 700, height: 400, background: "rgba(0, 229, 255, 0.08)" }} />
 
       {/* Twinkling stars */}
       {STAR_CONFIGS.map((s, i) => (
@@ -311,7 +311,7 @@ export function UploadPage() {
           }}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          className="fade-in fade-in-delay-2 glass-panel hud-corners"
+          className="fade-in fade-in-delay-2 glass-panel"
           style={{
             padding: "3rem 2.5rem",
             textAlign: "center",

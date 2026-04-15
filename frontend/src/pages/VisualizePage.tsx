@@ -83,8 +83,8 @@ function VisualizeLayout({ result }: VisualizeLayoutProps) {
     >
       {/* Minority Report background grid */}
       <div className="mr-grid" />
-      <div className="mr-glow" style={{ top: "30%", left: "20%", width: 400, height: 400, background: "rgba(0, 229, 255, 0.04)" }} />
-      <div className="mr-glow" style={{ top: "60%", right: "10%", width: 300, height: 300, background: "rgba(124, 77, 255, 0.03)" }} />
+      <div className="mr-glow" style={{ top: "25%", left: "15%", width: 500, height: 500, background: "rgba(0, 229, 255, 0.10)" }} />
+      <div className="mr-glow" style={{ top: "55%", right: "5%", width: 400, height: 400, background: "rgba(124, 77, 255, 0.08)" }} />
       {/* Header bar — spans full width */}
       <div
         className="relative glass-panel fade-in"

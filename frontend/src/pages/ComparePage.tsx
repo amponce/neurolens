@@ -161,7 +161,7 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
   if (isComplete) {
     return (
       <div
-        className="relative glass-panel hud-corners"
+        className="relative glass-panel"
         style={{
           padding: "1rem 1.25rem",
           display: "flex",
@@ -225,7 +225,7 @@ function UploadSlot({ label, state, upload }: UploadSlotProps) {
         onKeyDown={handleKeyDown}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="relative glass-panel hud-corners"
+        className="relative glass-panel"
         style={{
           padding: "2rem 1.5rem",
           textAlign: "center",
@@ -308,7 +308,7 @@ function DeltaMetricCard({ metric }: DeltaMetricCardProps) {
 
   return (
     <div
-      className="relative glass-panel hud-corners"
+      className="relative glass-panel"
       style={{ padding: "0.875rem 1rem" }}
     >
       <p
