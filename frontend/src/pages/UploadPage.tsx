@@ -14,13 +14,32 @@ function storeResult(result: AnalysisResult): void {
   }
 }
 
-const PARTICLE_CONFIGS = [
-  { left: "12%", delay: "0s", duration: "14s" },
-  { left: "28%", delay: "3s", duration: "18s" },
-  { left: "45%", delay: "7s", duration: "12s" },
-  { left: "63%", delay: "1.5s", duration: "20s" },
-  { left: "78%", delay: "5s", duration: "16s" },
-  { left: "91%", delay: "9s", duration: "13s" },
+// Drifting space particles — slow, varied sizes and colors
+const DRIFT_PARTICLES = [
+  { left: "8%", top: "85%", delay: "0s", duration: "25s", size: 2, color: "#00e5ff" },
+  { left: "22%", top: "90%", delay: "4s", duration: "32s", size: 1.5, color: "#7c4dff" },
+  { left: "38%", top: "75%", delay: "8s", duration: "28s", size: 3, color: "#00e5ff" },
+  { left: "55%", top: "88%", delay: "2s", duration: "35s", size: 1, color: "#ffab40" },
+  { left: "70%", top: "80%", delay: "6s", duration: "22s", size: 2.5, color: "#7c4dff" },
+  { left: "85%", top: "92%", delay: "10s", duration: "30s", size: 1.5, color: "#00e5ff" },
+  { left: "15%", top: "70%", delay: "12s", duration: "40s", size: 1, color: "#ffab40" },
+  { left: "48%", top: "95%", delay: "15s", duration: "26s", size: 2, color: "#7c4dff" },
+] as const;
+
+// Fixed twinkling stars
+const STAR_CONFIGS = [
+  { left: "5%", top: "12%", delay: "0s", duration: "4s", size: 1.5 },
+  { left: "18%", top: "8%", delay: "1.2s", duration: "3s", size: 1 },
+  { left: "32%", top: "20%", delay: "2.5s", duration: "5s", size: 2 },
+  { left: "52%", top: "5%", delay: "0.8s", duration: "3.5s", size: 1 },
+  { left: "67%", top: "15%", delay: "3s", duration: "4.5s", size: 1.5 },
+  { left: "78%", top: "22%", delay: "1.5s", duration: "3s", size: 1 },
+  { left: "90%", top: "10%", delay: "4s", duration: "5.5s", size: 2 },
+  { left: "42%", top: "3%", delay: "2s", duration: "4s", size: 1 },
+  { left: "8%", top: "35%", delay: "3.5s", duration: "3.5s", size: 1 },
+  { left: "95%", top: "30%", delay: "0.5s", duration: "4.5s", size: 1.5 },
+  { left: "60%", top: "40%", delay: "2.8s", duration: "3s", size: 1 },
+  { left: "25%", top: "45%", delay: "1s", duration: "5s", size: 1 },
 ] as const;
 
 function NeuralIcon() {
@@ -187,31 +206,63 @@ export function UploadPage() {
       style={{ background: "var(--color-void)" }}
     >
       {/* Ambient floating particles */}
-      {PARTICLE_CONFIGS.map((p, i) => (
+      {/* Twinkling stars */}
+      {STAR_CONFIGS.map((s, i) => (
         <div
-          key={i}
-          className="absolute bottom-0 rounded-full pointer-events-none"
+          key={`star-${i}`}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            background: "#fff",
+            animation: `twinkle ${s.duration} ${s.delay} ease-in-out infinite`,
+          }}
+        />
+      ))}
+
+      {/* Drifting space particles */}
+      {DRIFT_PARTICLES.map((p, i) => (
+        <div
+          key={`drift-${i}`}
+          className="absolute rounded-full pointer-events-none"
           style={{
             left: p.left,
-            width: 2,
-            height: 2,
-            background: i % 3 === 0 ? "#00e5ff" : i % 3 === 1 ? "#7c4dff" : "#ffab40",
-            animation: `float-particle ${p.duration} ${p.delay} ease-in-out infinite`,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            background: p.color,
+            boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
+            animation: `space-drift ${p.duration} ${p.delay} ease-in-out infinite`,
             opacity: 0,
           }}
         />
       ))}
 
-      {/* Radial ambient glow */}
+      {/* Nebula glow — large slow-breathing ambient light */}
       <div
         className="absolute pointer-events-none"
         style={{
-          top: "30%",
+          top: "25%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 600,
-          height: 600,
-          background: "radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 70%)",
+          width: 800,
+          height: 800,
+          background: "radial-gradient(ellipse, rgba(124,77,255,0.05) 0%, rgba(0,229,255,0.03) 40%, transparent 70%)",
+          animation: "nebula-pulse 12s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "60%",
+          left: "30%",
+          transform: "translate(-50%, -50%)",
+          width: 500,
+          height: 500,
+          background: "radial-gradient(ellipse, rgba(0,229,255,0.04) 0%, transparent 60%)",
+          animation: "nebula-pulse 18s 3s ease-in-out infinite",
         }}
       />
 

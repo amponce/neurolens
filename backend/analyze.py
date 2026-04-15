@@ -66,9 +66,19 @@ def load_model() -> None:
 
     logger.info("Loading TRIBE v2 model…")
     cache_dir = _BACKEND_DIR / "cache"
+    # Override all device settings to CPU (config ships with device: cuda)
     _model = TribeModel.from_pretrained(
         "facebook/tribev2",
         cache_folder=str(cache_dir),
+        device="cpu",
+        config_update={
+            "data.audio_feature.device": "cpu",
+            "data.video_feature.device": "cpu",
+            "data.text_feature.device": "cpu",
+            "data.audio_feature.infra.cluster": None,
+            "data.video_feature.infra.cluster": None,
+            "data.text_feature.infra.cluster": None,
+        },
     )
     logger.info("TRIBE v2 model loaded.")
 
